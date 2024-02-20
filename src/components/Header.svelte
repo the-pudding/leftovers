@@ -28,6 +28,6 @@
 	}
 
 	:global(.wordmark svg path) {
-		fill: currentColor;
+		fill: white;
 	}
 </style>

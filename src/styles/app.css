@@ -91,3 +91,39 @@ h5 {
 h6 {
 	font-size: var(--20px, 20px);
 }
+
+
+html, #content, header {
+	font-family: "National 2 Web";
+	background: #1E101E;
+}
+.visualContainer {
+	overflow: hidden;
+}
+
+
+.textContainer {
+	font-size: 18px;
+	max-width: 90%;
+	width: 600px;
+	padding: 20px;
+	margin: 0 auto;
+	background: black;
+	font-weight: normal;
+	font-family: var(--sans);
+	color: #eddeeb;
+}
+
+.textContainer .time {
+	color: #888;
+	font-weight: normal;
+}
+.textContainer .time span { font-weight: bold; color: #fff; }
+.textContainer .kidsQuestion {
+	color: #f2cf50;
+	font-weight: bold;
+}
+.textContainer .instructions {
+/*	font-weight: bold;
+	font-color: white;*/
+}

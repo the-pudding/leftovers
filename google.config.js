@@ -1,11 +1,10 @@
 export default [
 	{
-		"id": "1352iFuTSDDFPNAXBbOaEXkF8mCdjPu6B43hpUF2P3C4",
+		"id": "1SqA7zrSWK6rGZH6dRdckA2PBuow-EzXOvvRwu29vDVw",
 		"filepath": "src/data/copy.json"
+	},{
+		"id": "1itmIBHjV6PWZcoPMFRmbH0AEEgnlt7nHQXOMBHs9Fws",
+		"gid": "86978206",
+		"filepath": "src/data/variable-lookup.csv"
 	},
-	{
-		"id": "1te65h_nywgXVAzvV-9E5fmHGblcKvctf_cNZgeam9Tk",
-		"gid": "0",
-		"filepath": "src/data/test.csv"
-	}
 ]
