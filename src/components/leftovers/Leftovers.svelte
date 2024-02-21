@@ -43,9 +43,11 @@
 
 	let sortObject;
 	let resorted = false;
-
-	function changeOption(event, userselect, customSort) {
-		
+	let userselect = false;
+	let customSort = false;
+	function changeOption(event, us, cs) {
+		userselect = us;
+		customSort = cs;
 		// IF SCRIPT IS DRIVING
 		if (!customSort && !userCustomize) {
 			sortObject = copy.timeline[value].sortby;	
@@ -71,6 +73,7 @@
 	let labelOpacity = 1;
 	let menuOpacity = 1;
 	const firstLegendSlide = 2;
+	let previousValue;
 	
 	$: {
 		value = value === undefined ? 0 : value;
@@ -80,7 +83,12 @@
 		color_selected, sort_selected, heightOffset;
 		currentYear = copy.timeline[value].time;
 		avgAge = currentYear - 1984;
-
+		if (value != previousValue) {
+			userselect = false;
+			customSort = false
+			changeOption(null, userselect, customSort);
+			previousValue = value;
+		}
 		if (avgAge <= 13) {
 			heightOffset["l"][1] = "";
 			heightOffset["s"][1] = "";
@@ -104,7 +112,7 @@
 			heightOffset["w"][2] = 1;
 		}
 
-		changeOption(null, false, false);
+		
 	}
 </script>
 
@@ -117,13 +125,9 @@
 				<div class="infoitem"><span>Avg Age</span> {avgAge}</div>
 			</div>
 
-			<div class="dashboard">
-
-				<!----------------------
-				SELECTOR
-				----------------------->
+			<div class="debug">
 				<div class="selectContainer sortby">
-					<div class="selectLabel">Sort by...</div>
+					<div class="selectLabel">(DEBUG) Sort by...</div>
 					<select bind:value={sort_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
 						<!-- <option value={"default"}>Current color</option> -->
 						{#each Object.entries(lookup) as [key, value]}
@@ -132,22 +136,30 @@
 					</select>
 				</div>
 
+				<div class="selectContainer colorby">
+					<div class="selectLabel">(DEBUG) Color by...</div>
+					<select bind:value={color_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
+						{#each Object.entries(lookup) as [key, value]}
+						{#if excludedList.indexOf(value.variable) == -1}
+						<option value={value.variable}>{value.name}</option>
+						{/if}
+						{/each}
+					</select>
+				</div>
+			</div>
+
+			<div class="dashboard">
+
+				<!----------------------
+				SELECTOR
+				----------------------->
+				
 
 				<!----------------------
 				LEGEND
 				----------------------->
 				<div class="legend" style="opacity:{legendOpacity};">
 					<div class="legendTitle">{lookup[color_selected].name}</div>
-					<div class="selectContainer colorby">
-						<div class="selectLabel">Color by...</div>
-						<select bind:value={color_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
-							{#each Object.entries(lookup) as [key, value]}
-							{#if excludedList.indexOf(value.variable) == -1}
-							<option value={value.variable}>{value.name}</option>
-							{/if}
-							{/each}
-						</select>
-					</div>
 					{#if Array.isArray(lookup[color_selected].colors)}
 					{#each sortOrder === -1 ? [...colors].reverse() : colors as color, i}
 					<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};">
@@ -244,155 +256,163 @@
 		text-align: center;
 		width: 100%;
 	}
+	.debug {
+		position: absolute;
+		right: 10px;
+		bottom: 10px
+	}
 	.selectContainer {
-		flex-shrink: 0;
-		display: none;
-	}
-	select {
-		margin: 5px 20px 5px 0;
-		background: black;
-		border: .5px solid white;
+		display: inline-block;
+		font-size: 12px;
 		color: white;
-		transition: all 500ms cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
-		transition-timing-function: cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
+/*		flex-shrink: 0;*/
+/*		display: none;*/
 	}
-	.legendTitle {
-		flex-shrink: 0;
-		width: 100%;
-		text-align: center;
-		font-weight: bold;
-		margin-bottom: 10px;
-		font-size: 20px;
-	}
-	.legend {
-		display: flex;
-		flex-direction: row;
-		align-items: center; 
-		flex-grow: 1;
-		width: 95%;
-		max-width: 700px;
-		height: 20px;
-		margin: 10px auto 0;
-		text-align: right;
-		flex-wrap: wrap;
-		transition: opacity 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
-		transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	}
-	.colorby {
-		flex-basis: 100%; 
-		margin: 0 auto;
-	}
-	.colorby select {
-		display: block;
-		margin: 2px auto 4px;
-	}
-	.colorby .selectLabel {
-		text-align: center;
-	}
-	
-	.selectLabel {
-		width: 100%;
-		text-align: left;
-		font-size: 14px;
-		text-transform: uppercase;
-	}
-	.sortby {
-		position: absolute;
-		left: 0px;
-		top: 0px;
-	}
+select {
+	margin: 5px 20px 5px 0;
+	background: black;
+	border: .5px solid white;
+	color: white;
+	transition: all 500ms cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
+	transition-timing-function: cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
+}
+.legendTitle {
+	flex-shrink: 0;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+.legend {
+	display: flex;
+	flex-direction: row;
+	align-items: center; 
+	flex-grow: 1;
+	width: 95%;
+	max-width: 700px;
+	height: 20px;
+	margin: 10px auto 0;
+	text-align: right;
+	flex-wrap: wrap;
+	transition: opacity 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+/*.colorby {
+	flex-basis: 100%; 
+	margin: 0 auto;
+}*/
+/*.colorby select {
+	display: block;
+	margin: 2px auto 4px;
+}*/
+/*.colorby .selectLabel {
+	text-align: center;
+}*/
 
-	.firstValue, .lastValue {
-		flex: 1; 
-		text-align: left;
-		margin: 0 3px;
-	}
-	.firstValue {
-		text-align: right;
-	}
-	.legend .color {
-		flex-grow: 1;
-		min-width: 0;
-		height: 20px;
-		text-align: center;
-	}
-	.colorLabel {
-		flex: 1 1 auto;
-		align-items: center;
-		text-align: center;
-		justify-content: center;
-		color: black;
-		white-space: normal;
-		margin: 2px;
-	}
-	
+/*.selectLabel {
+	width: 100%;
+	text-align: left;
+	font-size: 14px;
+	text-transform: uppercase;
+}*/
+/*.sortby {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}*/
 
-	#scrolly {
-		font-family: "National 2 Web";
-	}
-	.visualContainer {
-		position: sticky;
-		top: 0em;
-		left: 0px;
-		height: 100vh;
-	}
-	#groupLabels {
-		position: absolute;
-		width: 100%;
-		top: 0px;
-		left: 0px;
-		pointer-events: none;
-		z-index: -1;
-		transition: all 500ms cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
-		transition-timing-function: cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
-	}
-	.groupLabel {
-		color: white;
-		position: absolute;
-		left: 20px;
-		height: 22px;
-		margin-top: 0px;
-		width: calc(100% - 40px);
-		border-bottom: 1px dashed rgba(255,255,255,0.4);
-		transition: all 500ms cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
-		transition-timing-function: cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
-	}
-	.mainLabel {
-		font-weight: bold;
-		text-align: center;
-		text-transform: uppercase;
-		opacity: 1;
-	}
-	.secondaryGroupLabel {
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		opacity: 0.4;
-	}
-	.leftLabel {
-		text-align: left;
-		left: 0;
-	}
-	.rightLabel {
-		text-align: right;
-		right: 0;
-	}
+.firstValue, .lastValue {
+	flex: 1; 
+	text-align: left;
+	margin: 0 3px;
+}
+.firstValue {
+	text-align: right;
+}
+.legend .color {
+	flex-grow: 1;
+	min-width: 0;
+	height: 20px;
+	text-align: center;
+}
+.colorLabel {
+	flex: 1 1 auto;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	color: black;
+	white-space: normal;
+	margin: 2px;
+}
 
-	.step {
-/*		pointer-events: none !important;*/
-		height: auto;
-		min-height: 50vh;
-		margin: 30vh auto 70vh;
-		position: relative;
-		color: #777;
-	}
 
-	.step.questiontext {
+#scrolly {
+	font-family: "National 2 Web";
+}
+.visualContainer {
+	position: sticky;
+	top: 0em;
+	left: 0px;
+	height: 100vh;
+}
+#groupLabels {
+	position: absolute;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	pointer-events: none;
+	z-index: -1;
+	transition: all 500ms cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
+	transition-timing-function: cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
+}
+.groupLabel {
+	color: white;
+	position: absolute;
+	left: 20px;
+	height: 22px;
+	margin-top: 0px;
+	width: calc(100% - 40px);
+	border-bottom: 1px dashed rgba(255,255,255,0.4);
+	transition: all 500ms cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
+	transition-timing-function: cubic-bezier(0.000, 1.020, 0.435, 1.000); /* custom */
+}
+.mainLabel {
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	opacity: 1;
+}
+.secondaryGroupLabel {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	opacity: 0.4;
+}
+.leftLabel {
+	text-align: left;
+	left: 0;
+}
+.rightLabel {
+	text-align: right;
+	right: 0;
+}
 
-	}
-	.step.active {
-		color: #fff;
-		font-weight: bold;
-		padding-right: 10px;
-	}
+.step {
+		pointer-events: none !important;
+height: auto;
+min-height: 50vh;
+margin: 30vh auto 70vh;
+position: relative;
+color: #777;
+}
+
+.step.questiontext {
+
+}
+.step.active {
+	color: #fff;
+	font-weight: bold;
+	padding-right: 10px;
+}
 </style>
