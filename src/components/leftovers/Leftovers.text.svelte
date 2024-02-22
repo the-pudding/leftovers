@@ -22,15 +22,15 @@
 		}
 	}
 </script>
-
-<div class="textContainer {add}">
+{#if type != "invisible"}
+<div class="textContainer {add === "longcopy" ? "longcopy" : "shortcopy"}">
 	{#if type == "year"}
 		<p class="time">It's <span>{time}</span>. The average age of people on your screen is <span>{time - 1984}</span>.</p>
 	{/if}
 	
 	{@html convertToHTML(copy)}
 </div>
-
+{/if}
 <style>
 	
 </style>

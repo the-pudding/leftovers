@@ -2,12 +2,13 @@
 	import P5 from 'p5-svelte';
 	import { onMount } from 'svelte';
 
-	export let people, currentYear, w, h, padding, topPadding, colors, lookup, heightOffset, currentStage, resorted, sortOrder, color_selected, sort_selected, labelOpacity; 
+	export let people, currentYear, w, h, padding, topPadding, colors, lookup, heightOffset, currentStage, resorted, sortOrder, color_selected, sort_selected, labelOpacity, zoomTarget; 
 
 	import human_lookup from "$data/lookup-humanwords.json"
 
 
 	let maxPeople = 480;
+	const firstPerson = 89;
 	let pWidth = 40;
 	let pHeight = 40;
 	let spacingMult = 1.4;
@@ -20,6 +21,7 @@
 	let positionLookup = {"s":[],"w":[],"l": []};
 	let currentVar = null; // track current year so we can only trigger resorting on change
 	let all_people = [];
+
 	const raceLookup = {
 		"1": ["01","02"],
 		"2": ["03","04"],
@@ -81,6 +83,8 @@
 	const sketch = (p) => {
 		let img;
 		let font;
+		let zoom = 1;
+		let firstPersonCoords = [0,0];
 
 		p.preload = () => {
 			font = p.loadFont('assets/leftovers/National2Web-Regular.otf');
@@ -140,7 +144,12 @@
 			if (currentVar != currentStage || resorted) {
 				calculatePositions();
 			}
-
+			firstPersonCoords = [all_people[0].loc.x, all_people[0].loc.y]; 
+			zoom = p.lerp(zoom, zoomTarget, 0.01);
+			p.translate(w/2, h/2);
+			// p.translate(firstPersonCoords[0], firstPersonCoords[1]);
+			// console.log(firstPersonCoords)
+			p.scale(zoom);
 			for (let i = 0; i < all_people.length; i++) {
 				// Check collisions
 				let collide = checkCollision(all_people[i], i);
@@ -174,8 +183,11 @@
 			
 			constructor(n) {
 				this.n = n;
-				this.loc = new p.Vector(p.random(w/2) + w/4, p.random(h/2)+ h/4);
+				this.loc = new p.Vector(p.random(w/2) + w/4, -40);
 				this.target_loc = new p.Vector(w/2, h/2);
+				if (n == firstPerson) {
+					this.loc = new p.Vector(w/2, h/2);
+				}
 				this.acc = new p.Vector(0,0);
 				this.vel = new p.Vector(0, 0);
 				this.y_adjustment = 0;
@@ -257,6 +269,13 @@
 			    // Adjust the y-coordinate based on the row
     			this.target_loc.y = row * (pHeight * spacingMult) + padding/2;
 
+    			if (this.n != firstPerson && zoom > 2) {
+    				// this.target_loc.x = w/2;
+    				this.target_loc.y = -60;
+    			} else if (this.n == firstPerson && zoom > 2) {
+    				this.target_loc = new p.Vector(w/2, h/3);
+    			}
+
 			    // Additional group-based vertical offset
 				let groupOffset = h * heightOffset[this.group_number][0]; // Adjust these offsets as needed
 
@@ -327,7 +346,7 @@
 				p.push(); // Save the current drawing state
 
 				// Move to the sprite's center location
-				p.translate(this.loc.x, this.loc.y);
+				p.translate(this.loc.x - w/2, this.loc.y - h/2);
 
 				// Adjust for the sprite's width and height
 				const imgX = -(pWidth * this.personWeight) / 2;
@@ -336,13 +355,13 @@
 
 
 
-				if (this.distance < 4 && (this.vel.x + this.vel.y) < 2) {
+				if (this.distance < 4 && (this.vel.x + this.vel.y) < 1) {
 					this.frameCount = this.frameCount + 0.1;
 					imageCode = [this.gender,"stand"];
-				} else if (Math.abs(this.vel.x) > 0.02 && this.vel.y > 0.05) {
+				} else if (this.vel.y > 0 && this.vel.y > Math.abs(this.vel.x)) {
 					this.frameCount = this.frameCount + Math.max(minAnimationFrames, Math.abs(this.vel.x/8) + Math.abs(this.vel.y/8));
 					imageCode = [this.gender,"down"];
-				} else if (Math.abs(this.vel.x) < -0.02 && this.vel.y < -0.05) {
+				} else if (this.vel.y < 0 && this.vel.y > Math.abs(this.vel.x)) {
 					this.frameCount = this.frameCount + Math.max(minAnimationFrames, Math.abs(this.vel.x/8) + Math.abs(this.vel.y/8));
 					imageCode = [this.gender,"up"];
 				} else {
@@ -360,8 +379,10 @@
 				}
 				
 			   	// Rect / text option
-				// p.fill(255)
-				// p.text(String(this.sortbyvalue), imgX, imgY, pWidth);
+			   	// if (this.n == firstPerson) {
+					// p.fill(255)
+					// p.text(String(this.sortbyvalue), imgX, imgY, pWidth);
+				// }
 			    // p.rect(0,0, pWidth, pHeight);
 			    // Draw the sprite
 			    p.pop(); // Restore the previous drawing state
