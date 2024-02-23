@@ -157,8 +157,9 @@ html {
 	font-weight: bold;
 	font-size: 1.4rem;
 	line-height: 1.6rem;
+}
+.textContainer h2.chartHeader {
 	margin-top: 40px;
-	margin-bottom: 0px;
 }
 .textContainer p {
 	margin-bottom: 1.4rem;

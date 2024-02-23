@@ -438,14 +438,17 @@ select {
 }
 
 .step {
-	pointer-events: none !important;
+/*	pointer-events: none !important;*/
 	height: auto;
 	min-height: 50vh;
 	margin: 30vh auto 70vh;
 	position: relative;
 	color: #777;
 }
-
+.step:first-child {
+	min-height: 0vh !important;
+	margin: 0vh auto !important;
+}
 .step.longcopy {
 	pointer-events: auto !important;
 	height: auto;
@@ -456,7 +459,7 @@ select {
 	backdrop-filter: blur(0.5px);
 	padding: 100px 2em;
 	box-sizing: border-box !important;
-	margin: 0vh auto;
+	margin: 0vh auto 80vh;
 	position: relative;
 	pointer-events: none;
 	min-height: 100vh;

@@ -36,10 +36,10 @@ arrest,17,Arrests (thus far),0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yell
 victim,18,Victim of crime (thus far),0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yellow""]","[0,1,""2+""]",Never victim of a crime,More often victim of a crime
 homeless,19,Homeless events (thus far),0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yellow""]","[0,1,""2+""]",Never homeless,More experiences being homeless
 relative_die,20,Relatives died (thus far),0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yellow""]","[0,1,""2+""]",Fewer close relatives died,More close relatives died
-divorce,21,Divorced (thus far),0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yellow""]","[0,1,""2+""]",Did not experience parental divorce,Experienced parental divorce
+divorce,21,Parent divorces (thus far),0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yellow""]","[0,1,""2+""]",Did not experience parental divorce,Experienced parental divorce
 bullying,22,Have you been bullied?,0,1,0,1,2,1,1,"[""blackpurple"",""yellow""]","[""Not bullied"",""Bullied""]",Less bullied,More bullied
 see_shot_with_gun,23,See someone shot with gun,0,5,0,1,2,1,1,"[""blackpurple"",""yellow""]","[""No"",""Yes""]",Not seen someone show,Seen someone shot
 neglect_parent,24,Uninvolved parents,0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yellow""]","[""Parents involved"",""One parent uninvolved"",""Two parents uninvolved""]",Parents involved,Parents not involved
 home_risk,25,Home risk score,0,6,0,6,7,1,1,"[""blackpurple"",""darkpurple"",""purple"",""lightpurple"",""red"",""orange"",""yellow""]","[0,1,2,3,4,5,""6+""]",Less risk,More risk
 poverty,26,Childhood poverty,0,1,0,1,2,1,1,"[""blackpurple"",""yellow""]","[""No"",""Yes""]",Didn't grow up in poverty,Grew up in poverty
-total_trauma,27,Potentially traumatic experiences (thus far),2,12,2,12,5,1,1,"[""blackpurple"", ""lightpurple"", ""red"", ""orange"",""yellow""]","[""<2"",""3-5"",""6-8"",""9-11"",""12+""]",Fewer traumatic experiences,More traumatic experiences
+total_trauma,27,Potentially traumatic experiences (thus far),2,12,2,9,5,1,1,"[""blackpurple"", ""lightpurple"", ""red"", ""orange"",""yellow""]","[""<2"",""3-4"",""5-6"",""7-8"",""9+""]",Fewer traumatic experiences,More traumatic experiences
