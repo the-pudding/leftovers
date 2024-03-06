@@ -4,10 +4,9 @@
 
 	export let people, currentYear, w, h, padding, topPadding, colors, lookup, heightOffset, currentStage, resorted, sortOrder, color_selected, sort_selected, labelOpacity, zoomTarget; 
 
-	import human_lookup from "$data/lookup-humanwords.json"
+	// import human_lookup from "$data/lookup-humanwords.json"
 
-
-	let maxPeople = 480;
+	const maxPeople = 500;
 	const firstPerson = 89;
 	let pWidth = 40;
 	let pHeight = 40;
@@ -145,7 +144,7 @@
 				calculatePositions();
 			}
 			firstPersonCoords = [all_people[0].loc.x, all_people[0].loc.y]; 
-			zoom = p.lerp(zoom, zoomTarget, 0.01);
+			zoom = p.lerp(zoom, zoomTarget, 0.03);
 			p.translate(w/2, h/2);
 			// p.translate(firstPersonCoords[0], firstPersonCoords[1]);
 			// console.log(firstPersonCoords)

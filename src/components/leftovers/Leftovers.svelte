@@ -47,6 +47,8 @@
 	let resorted = false;
 	let userselect = false;
 	let customSort = false;
+
+
 	function changeOption(event, us, cs) {
 		userselect = us;
 		customSort = cs;
@@ -78,7 +80,8 @@
 	let hedOpacity = 0;
 	const firstLegendSlide = 2;
 	let previousValue;
-	
+	let key = 0;
+
 	$: {
 		value = value === undefined ? 0 : value;
 		legendOpacity = copy.timeline[value].legend_visible == -1 ? 0 : 1;
@@ -118,7 +121,7 @@
 			heightOffset["s"][2] = 1;
 			heightOffset["w"][2] = 1;
 		}
-
+		key = Math.random();
 	}
 </script>
 
@@ -169,28 +172,28 @@
 				<!----------------------
 				LEGEND
 				----------------------->
-				<div class="legend" style="opacity:{legendOpacity};">
-					<div class="legendTitle">{lookup[color_selected].name}</div>
+				<div class="legend" style="opacity:{legendOpacity};" in:slide|key={key}>
+					<div class="legendTitle" in:slide|key={key}>{lookup[color_selected].name}</div>
 					{#if Array.isArray(lookup[color_selected].colors)}
-					<div class="colorLabel" style="background:{hexColors['nodata'][0]}; color:{hexColors['nodata'][1]};">
-						No data
-					</div>
-					{#each sortOrder === -1 ? [...colors].reverse() : colors as color, i}
-					<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};">
-						{lookup[color_selected].labels[sortOrder === -1 ? colors.length - 1 - i : i]}
-					</div>
-					{/each}
-
-					
-					{:else}
-					<div class="firstValue">{"<" + lookup[sort_selected].color_min}</div>
-						{#each colors as color, i}
-						<div class="color" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};"></div>
-						{/each}
-						<div class="lastValue">{lookup[sort_selected].color_max}+</div>
-						{/if}
-					</div>
+					<div class="colorLabel" style="background:{hexColors['nodata'][0]}; color:{hexColors['nodata'][1]};" in:slide|key={key}>
+					No data
 				</div>
+				{#each sortOrder === -1 ? [...colors].reverse() : colors as color, i}
+				<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide|key={key}>
+					{lookup[color_selected].labels[sortOrder === -1 ? colors.length - 1 - i : i]}
+				</div>
+				{/each}
+
+
+				{:else}
+				<div class="firstValue" in:slide|key={key}>{"<" + lookup[sort_selected].color_min}</div>
+					{#each colors as color, i}
+					<div class="color" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide|key={key}></div>
+					{/each}
+					<div class="lastValue" in:slide|key={key}>{lookup[sort_selected].color_max}+</div>
+					{/if}
+				</div>
+			</div>
 
 
 				<!----------------------
@@ -439,11 +442,11 @@ select {
 
 .step {
 /*	pointer-events: none !important;*/
-	height: auto;
-	min-height: 50vh;
-	margin: 30vh auto 70vh;
-	position: relative;
-	color: #777;
+height: auto;
+min-height: 50vh;
+margin: 30vh auto 70vh;
+position: relative;
+color: #777;
 }
 .step:first-child {
 	min-height: 0vh !important;
