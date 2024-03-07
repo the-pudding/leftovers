@@ -15,7 +15,8 @@ R OPTIMISTIC ABOUT FUTURE (AGREE/DISAGREE),12,Optimistic about future? (in 1997)
 TRANS CRD GPA ENG,13,HS English GPA,0,4,2,3,4,1,-1,"[""yellow"", ""red"", ""lightpurple"",  ""blackpurple""]","[""<2.0"",""2.0-2.4"",""2.5-2.9"", ""3.0+""]",Lower GPA,Higher GPA
 TRANS CRD GPA MATH,14,HS math GPA,0,4,2,3,4,1,-1,"[""yellow"", ""red"", ""lightpurple"",  ""blackpurple""]","[""<2.0"",""2.0-2.4"",""2.5-2.9"", ""3.0+""]",Lower GPA,Higher GPA
 RACE,15,Race,1,6,1,6,6,1,-1,"[""blackpurple"",""yellow"",""purple"",""red"",""lightpurple"",""orange""]","[""White"",""Black"",""Am. Indian"",""Asian/Pac. Isl."",""Other"",""Hispanic""]",,
-gpa,16,HS GPA,0,4,2,3,4,1,-1,"[""yellow"", ""red"", ""lightpurple"",  ""blackpurple""]","[""<2.0"",""2.0-2.4"",""2.5-2.9"", ""3.0+""]",Lower GPA,Higher GPA
+gpa,16,HS GPA,0,3,2,3,3,1,-1,"[""red"", ""lightpurple"",  ""blackpurple""]","[""<2.0"",""2.0-3.0"", ""3.0+""]",Lower GPA,Higher GPA
+FAVORITE ICE CREAM (SAQ),17,Favorite ice cream (1997),1,5,1,5,5,1,-1,"[""darkpurple"",""lightpurple"",""red"",""yellow"",""orange""]","[""Chocolate"", ""Vanilla"", ""Strawberry"", ""Butter Pecan"", ""None of these""]",,
 grade,1,Current grade,0,12,6,11,6,1,1,"[""blackpurple"",""purple"",""lightpurple"",""red"",""orange"",""yellow""]","[""6th"",""7th"",""8th"",""9th"",""10th"",""11th""]",Lower grade,Higher grade
 Highest Degree (by year),2,Highest educational degree (so far),0,7,0,7,8,1,1,"[""blackpurple"",""darkpurple"",""purple"",""lightpurple"",""red"",""orange"",""yellow"",""yellow""]","[""None"",""GED"",""HS"",""Associate's"",""Bachelor's"",""Master's"",""PhD"",""Prof. degree""]",Lower edu. attainment,Higher edu. attainment
 income,3,Annual income,12000,200000,20000,200000,5,1,1,"[""blackpurple"", ""lightpurple"", ""red"", ""orange"",""yellow""]","[""$20k or less"",""$20k to $80k"",""$80k to $140k"",""$140k to $200k"",""$200k+""]",Lower income,Higher income
@@ -40,6 +41,6 @@ divorce,21,Parent divorces (thus far),0,2,0,2,3,1,1,"[""blackpurple"""",""orange
 bullying,22,Have you been bullied?,0,1,0,1,2,1,1,"[""blackpurple"",""yellow""]","[""Not bullied"",""Bullied""]",Less bullied,More bullied
 see_shot_with_gun,23,See someone shot with gun,0,5,0,1,2,1,1,"[""blackpurple"",""yellow""]","[""No"",""Yes""]",Not seen someone show,Seen someone shot
 neglect_parent,24,Uninvolved parents,0,2,0,2,3,1,1,"[""blackpurple"""",""orange"",""yellow""]","[""Parents involved"",""One parent uninvolved"",""Two parents uninvolved""]",Parents involved,Parents not involved
-home_risk,25,Home risk score,0,5,0,5,6,1,1,"[""blackpurple"",""darkpurple"",""lightpurple"",""red"",""orange"",""yellow""]","[0,1,2,3,4,""5+""]",Less risk,More risk
+home_risk,25,Home/family risk score,0,5,0,5,6,1,1,"[""blackpurple"",""darkpurple"",""lightpurple"",""red"",""orange"",""yellow""]","[0,1,2,3,4,""5+""]",Less risk,More risk
 poverty,26,Childhood poverty,0,1,0,1,2,1,1,"[""blackpurple"",""yellow""]","[""No"",""Yes""]",Didn't grow up in poverty,Grew up in poverty
 total_trauma,27,Traumatic experiences,2,12,2,9,5,1,1,"[""blackpurple"", ""lightpurple"", ""red"", ""orange"",""yellow""]","[""<2"",""3-4"",""5-6"",""7-8"",""9+""]",Fewer traumatic experiences,More traumatic experiences

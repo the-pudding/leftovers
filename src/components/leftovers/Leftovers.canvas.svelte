@@ -184,9 +184,7 @@
 				this.n = n;
 				this.loc = new p.Vector(p.random(w/2) + w/4, -40);
 				this.target_loc = new p.Vector(w/2, h/2);
-				if (n == firstPerson) {
-					this.loc = new p.Vector(w/2, h/2);
-				}
+				
 				this.acc = new p.Vector(0,0);
 				this.vel = new p.Vector(0, 0);
 				this.y_adjustment = 0;
@@ -196,7 +194,10 @@
 				this.frameCount = 0;
 				this.distance = 100;
 				this.gender = "m";
-
+				if (n == firstPerson) {
+					this.loc = new p.Vector(w/2, h/2);
+					this.topSpeed = w/300;
+				}
 				if (people[this.n][25][lookup["KEY!SEX"].index] == 2) {
 					this.gender = "f";
 				}
@@ -379,8 +380,8 @@
 				
 			   	// Rect / text option
 			   	// if (this.n == firstPerson) {
-					// p.fill(255)
-					// p.text(String(this.sortbyvalue), imgX, imgY, pWidth);
+				// 	p.fill(255)
+				// 	p.text(String(this.selectedValue), imgX, imgY, pWidth);
 				// }
 			    // p.rect(0,0, pWidth, pHeight);
 			    // Draw the sprite

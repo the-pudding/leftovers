@@ -15,6 +15,9 @@
 				if (line.indexOf("IMAGE|") != -1) {
 					line = '<div class="imageContainer"><img class="desktopImage" src="assets/happydays/' + line.replace("IMAGE|","").replace(/(\r\n|\n|\r)/gm, "") + '.svg"/><img class="mobileImage" src="assets/happydays/' + line.replace("IMAGE|","").replace(/(\r\n|\n|\r)/gm, "") + '_mobile.svg"/></div>';
 				}
+				if (line.indexOf(">>") != -1) {
+					line = "<div class='chartPlaceholder'>" + line + "</div>";
+				}
 				if (/[A-Za-z0-9]/.test(line)) {
 					finalText.push(line);	
 				}				

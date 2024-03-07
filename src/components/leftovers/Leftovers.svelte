@@ -76,6 +76,7 @@
 	let legendOpacity = 1;
 	let labelOpacity = 1;
 	let menuOpacity = 1;
+	let exploreOpacity = 0;
 	let timelineOpacity = 0;
 	let hedOpacity = 0;
 	const firstLegendSlide = 2;
@@ -87,6 +88,8 @@
 		legendOpacity = copy.timeline[value].legend_visible == -1 ? 0 : 1;
 		labelOpacity = copy.timeline[value].labels_visible == -1 ? 0 : 1;
 		timelineOpacity = copy.timeline[value].timeline_visible == -1 ? 0 : 1;
+		exploreOpacity = copy.timeline[value].explore_visible == 1 ? 1 : 0;
+		// exploreOpacity = 1;
 		zoomTarget = copy.timeline[value].zoom > 0 ? copy.timeline[value].zoom : 1;
 		sortOrder;
 		color_selected, sort_selected, heightOffset;
@@ -140,8 +143,8 @@
 			</div>
 
 			<div class="debug">
-				<div class="selectContainer sortby">
-					<div class="selectLabel">(DEBUG) Sort by...</div>
+				<div class="selectContainer sortby" style="opacity:{exploreOpacity};">
+					<div class="selectLabel">Sort by...</div>
 					<select bind:value={sort_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
 						<!-- <option value={"default"}>Current color</option> -->
 						{#each Object.entries(lookup) as [key, value]}
@@ -150,8 +153,8 @@
 					</select>
 				</div>
 
-				<div class="selectContainer colorby">
-					<div class="selectLabel">(DEBUG) Color by...</div>
+				<div class="selectContainer colorby" style="opacity:{exploreOpacity};">
+					<div class="selectLabel">Color by...</div>
 					<select bind:value={color_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
 						{#each Object.entries(lookup) as [key, value]}
 						{#if excludedList.indexOf(value.variable) == -1}
@@ -321,6 +324,7 @@
 		top: 10px;
 		text-align: center;
 		width: 100%;
+		height: 0px;
 	}
 	.debug {
 		position: absolute;
@@ -401,7 +405,7 @@ select {
 #groupLabels {
 	position: absolute;
 	width: calc(100% - 50px);
-	top: 0px;
+	top: -20px;
 	left: 0px;
 	pointer-events: none;
 	z-index: -1;
@@ -441,13 +445,14 @@ select {
 }
 
 .step {
-/*	pointer-events: none !important;*/
-height: auto;
-min-height: 50vh;
-margin: 30vh auto 70vh;
-position: relative;
-color: #777;
+	pointer-events: none;
+	height: auto;
+	min-height: 50vh;
+	margin: 30vh auto 70vh;
+	position: relative;
+	color: #777;
 }
+
 .step:first-child {
 	min-height: 0vh !important;
 	margin: 0vh auto !important;

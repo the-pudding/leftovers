@@ -93,10 +93,11 @@ h6 {
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
+
 html, #content, header {
 	font-family: "National 2 Web";
 	background: #1E101E;
@@ -163,6 +164,7 @@ html {
 }
 .textContainer p {
 	margin-bottom: 1.4rem;
+	pointer-events: auto !important;
 }
 .textContainer strong {
 	color: #FAF0F9 !important;
@@ -205,6 +207,16 @@ html {
 	font-weight: bold;
 	color: #fff;
 }
+
+
+.chartPlaceholder {
+	width: 100%;
+	text-align: center;
+	padding: 150px 0;
+	background: #333;
+	font-size: 14px;
+}
+
 .imageContainer {
 	width: 100%;
 }
