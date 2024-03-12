@@ -2,7 +2,7 @@
 	import P5 from 'p5-svelte';
 	import { onMount } from 'svelte';
 
-	export let people, currentYear, w, h, padding, topPadding, colors, lookup, heightOffset, currentStage, resorted, sortOrder, color_selected, sort_selected, labelOpacity, zoomTarget; 
+	export let people, currentYear, w, h, padding, topPadding, colors, lookup, heightOffset, currentStage, resorted, sortOrder, color_selected, sort_selected, labelOpacity, zoomTarget, speedAddition; 
 
 	// import human_lookup from "$data/lookup-humanwords.json"
 
@@ -43,6 +43,7 @@
 		"01-darkpurple": {},
 		"01-lightpurple": {},
 		"01-red": {},
+		"01-pink": {},
 		"01-orange": {},
 		"01-yellow": {},
 		"01-nodata": {},
@@ -52,6 +53,7 @@
 		"02-darkpurple": {},
 		"02-lightpurple": {},
 		"02-red": {},
+		"02-pink": {},
 		"02-orange": {},
 		"02-yellow": {},
 		"02-nodata": {},
@@ -61,6 +63,7 @@
 		"03-darkpurple": {},
 		"03-lightpurple": {},
 		"03-red": {},
+		"03-pink": {},
 		"03-orange": {},
 		"03-yellow": {},
 		"03-nodata": {},
@@ -70,6 +73,7 @@
 		"04-darkpurple": {},
 		"04-lightpurple": {},
 		"04-red": {},
+		"04-pink": {},
 		"04-orange": {},
 		"04-yellow": {},
 		"04-nodata": {}
@@ -189,7 +193,7 @@
 				this.vel = new p.Vector(0, 0);
 				this.y_adjustment = 0;
 				this.group_number = "s"; // hs, college, working
-				this.topSpeed = p.random(w/400,w/800);
+				this.topSpeed = p.random(3,5);
 				this.randX = p.random(-1,1);
 				this.frameCount = 0;
 				this.distance = 100;
@@ -284,17 +288,10 @@
 			}
 
 
-
-
-			applyForce(force) {
-				this.f = p.Vector.div(force, mass);
-				this.acc.add(this.f);
-			}
-
 			seek(collide) {
 			    // Collision and wiggle logic
 				if (collide) {
-					let collisionVector = new p.Vector(collide[0]/100, collide[1]/100);
+					let collisionVector = new p.Vector(collide[0]/40, collide[1]/40);
 					this.acc.add(collisionVector);
 				}
 
@@ -306,24 +303,24 @@
 				let speed;
 				if (this.distance < 100) {
 			        // Smoother deceleration as the Person approaches the target
-					speed = p.map(this.distance, 0, 100, 0, this.topSpeed);
+					speed = p.map(this.distance, 0, 100, 0, this.topSpeed + speedAddition/3);
 				} else {
 			        // Outside the deceleration zone, use max speed
-					speed = this.topSpeed;
+					speed = this.topSpeed + speedAddition;
 				}
 
 				desired.mult(speed);
 
 			    // Gradually adjust the current velocity towards the desired velocity
-			    this.vel.lerp(desired, 0.3); // The lerp factor (0.1) controls the smoothness
+			    this.vel.lerp(desired, 0.3);
 
 
 			    // If very close to the target, stop more smoothly
 			    if (this.distance < 4) {
 			        this.vel.mult(0.5); // Slow down gradually
 			    } else {
-			    	this.acc.x += p.random(-0.02, 0.02);
-			    	this.acc.y += p.random(-0.02, 0.02);	
+			    	this.acc.x += p.random(-0.05, 0.05);
+			    	this.acc.y += p.random(-0.05, 0.05);	
 			    }
 
 			    // Apply accumulated forces from collision and wiggle
@@ -333,14 +330,14 @@
 
 			update() {
 				this.vel.add(this.acc);
-				this.vel.limit(this.topSpeed);
+				this.vel.limit(this.topSpeed + speedAddition);
 				this.loc.add(this.vel);
 				this.acc.mult(0);
 			}
 
 			display() {
 
-				p.textAlign(p.CENTER, p.BOTTOM);
+				
 
 				const spriteIndex = Math.floor(this.frameCount) % 8;
 				p.push(); // Save the current drawing state
@@ -379,6 +376,7 @@
 				}
 				
 			   	// Rect / text option
+			   	// p.textAlign(p.CENTER, p.BOTTOM);
 			   	// if (this.n == firstPerson) {
 				// 	p.fill(255)
 				// 	p.text(String(this.selectedValue), imgX, imgY, pWidth);

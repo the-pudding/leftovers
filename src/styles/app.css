@@ -135,11 +135,18 @@ html {
 	z-index: 3;
 	overflow-x: hidden;
 }
+
 .textContainer.shortcopy {
 	background: #000;
 	padding: 10px;
 	margin: 0px auto;
 	font-family: var(--sans);
+}
+@media screen and (max-width: 600px) {
+	.textContainer.shortcopy {
+		width: calc(100% - 70px);
+		margin: 0px 0px 0px 10px;
+	}
 }
 .textContainer .fadedout {
 	opacity: 0.5;
@@ -162,9 +169,18 @@ html {
 .textContainer h2.chartHeader {
 	margin-top: 40px;
 }
-.textContainer p {
+.textContainer p, .textContainer a {
 	margin-bottom: 1.4rem;
 	pointer-events: auto !important;
+}
+.textContainer p span {
+
+}
+.textContainer p .hl {
+	border-bottom: 5px solid #C5575E;
+}
+.textContainer p .color_pink {
+	color: #FF8BB2;
 }
 .textContainer strong {
 	color: #FAF0F9 !important;

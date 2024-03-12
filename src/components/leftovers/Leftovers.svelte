@@ -37,9 +37,10 @@
 	    "darkpurple": ["#6b3191","#ffffff"], // darkpurple
 	    "purple": ["#864ea8","#ffffff"], // purple
 	    "lightpurple": ["#a14cd8","#ffffff"], // lightpurple
-	    "red": ["#d65680","#000000"], // red
-	    "orange": ["#ed7032","#000000"], // orange
-	    "yellow": ["#fcba44","#000000"]  // yellow
+	    "red": ["#c54e59","#ffffff"], // red
+	    "orange": ["#94596b","#ffffff"], // orange
+	    "yellow": ["#fcba44","#000000"],  // yellow
+	    "pink": ["#ec608f","#ffffff"]
 	}
 	
 
@@ -69,12 +70,17 @@
 		}
 	}
 
+	function dispatchResize() {
+		resorted = true;
+	}
+
 	function getSortOrder(n) {
 		sortOrder = lookup[sort_selected].order;	
 	}
 
 	let legendOpacity = 1;
 	let labelOpacity = 1;
+	let defaultLabelOpacity = 1;
 	let menuOpacity = 1;
 	let exploreOpacity = 0;
 	let timelineOpacity = 0;
@@ -82,6 +88,7 @@
 	const firstLegendSlide = 2;
 	let previousValue;
 	let key = 0;
+	let speedAddition = 0;
 
 	$: {
 		value = value === undefined ? 0 : value;
@@ -89,6 +96,12 @@
 		labelOpacity = copy.timeline[value].labels_visible == -1 ? 0 : 1;
 		timelineOpacity = copy.timeline[value].timeline_visible == -1 ? 0 : 1;
 		exploreOpacity = copy.timeline[value].explore_visible == 1 ? 1 : 0;
+		speedAddition = copy.timeline[value].speed == 0 ? 0 : 10;
+		if (copy.timeline[value].zoom != 4 && copy.timeline[value].labels_visible == -1 && copy.timeline[value].colors != "FAVORITE ICE CREAM (SAQ)") {
+			defaultLabelOpacity = 1;
+		} else {
+			defaultLabelOpacity = 0;
+		}
 		// exploreOpacity = 1;
 		zoomTarget = copy.timeline[value].zoom > 0 ? copy.timeline[value].zoom : 1;
 		sortOrder;
@@ -124,10 +137,10 @@
 			heightOffset["s"][2] = 1;
 			heightOffset["w"][2] = 1;
 		}
-		key = Math.random();
+		// key = Math.random();
 	}
 </script>
-
+<svelte:window on:resize={dispatchResize} />
 <div class="outsideContainer">
 	<section id="scrolly">
 		<div class="visualContainer" bind:clientWidth={w} bind:clientHeight={h} style="width: 100%;">
@@ -175,41 +188,51 @@
 				<!----------------------
 				LEGEND
 				----------------------->
-				<div class="legend" style="opacity:{legendOpacity};" in:slide|key={key}>
-					<div class="legendTitle" in:slide|key={key}>{lookup[color_selected].name}</div>
-					{#if Array.isArray(lookup[color_selected].colors)}
-					<div class="colorLabel" style="background:{hexColors['nodata'][0]}; color:{hexColors['nodata'][1]};" in:slide|key={key}>
-					No data
-				</div>
-				{#each sortOrder === -1 ? [...colors].reverse() : colors as color, i}
-				<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide|key={key}>
-					{lookup[color_selected].labels[sortOrder === -1 ? colors.length - 1 - i : i]}
-				</div>
-				{/each}
+
+				<div class="legend" style="opacity:{legendOpacity};">
+					{#key lookup[color_selected].name}
+						<div class="legendTitle" in:slide>{lookup[color_selected].name}</div>
+						{#if Array.isArray(lookup[color_selected].colors)}
+						<div class="colorLabel" style="background:{hexColors['nodata'][0]}; color:{hexColors['nodata'][1]};" in:slide>
+						No data
+						</div>
+						{#each colors as color, i}
+						<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide>
+							{lookup[color_selected].labels[sortOrder === -1 ? colors.length - 1 - i : i]}
+						</div>
+						{/each}
 
 
-				{:else}
-				<div class="firstValue" in:slide|key={key}>{"<" + lookup[sort_selected].color_min}</div>
-					{#each colors as color, i}
-					<div class="color" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide|key={key}></div>
-					{/each}
-					<div class="lastValue" in:slide|key={key}>{lookup[sort_selected].color_max}+</div>
-					{/if}
+						{:else}
+							<div class="firstValue" in:slide>{"<" + lookup[sort_selected].color_min}</div>
+							{#each colors as color, i}
+							<div class="color" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide></div>
+							{/each}
+							<div class="lastValue" in:slide>{lookup[sort_selected].color_max}+</div>
+						{/if}
+					{/key}
+					</div>
+					
 				</div>
-			</div>
 
 
 				<!----------------------
 				LABELS ON CHART
 				----------------------->
-				<div id="groupLabels" style="height: {h}px; opacity: {labelOpacity};">
+				<div id="groupLabels" style="height: {h}px;">
+					<div class="groupLabel" style="top:{heightOffset['l'][0]*h*.99}px; opacity: {defaultLabelOpacity};"  in:slide|key={key}>
+						{#key lookup[sort_selected].left_label}
+						<div class="leftLabel secondaryGroupLabel"  in:slide>←{lookup[sort_selected].left_label}</div>
+						<div class="rightLabel secondaryGroupLabel"  in:slide>{lookup[sort_selected].right_label}→</div>
+						{/key}
+					</div>
 					{#each Object.entries(heightOffset) as [group, i]}
-					<div class="groupLabel" style="top:{heightOffset[group][0]*h*.99}px;">
+					<div class="groupLabel" style="top:{heightOffset[group][0]*h*.99}px; opacity: {labelOpacity};">
 						{#key heightOffset[group][1]}
 						<div class="mainLabel" in:fade>{heightOffset[group][1]}</div>
 						{/key}
-						<div class="leftLabel secondaryGroupLabel" in:fade>{lookup[sort_selected].left_label}</div>
-						<div class="rightLabel secondaryGroupLabel" in:fade>{lookup[sort_selected].right_label}</div>
+						<div class="leftLabel secondaryGroupLabel" in:fade>←{lookup[sort_selected].left_label}</div>
+						<div class="rightLabel secondaryGroupLabel" in:fade>{lookup[sort_selected].right_label}→</div>
 					</div>
 					{/each}
 				</div>
@@ -233,6 +256,7 @@
 			sort_selected={sort_selected}
 			labelOpacity={labelOpacity}
 			zoomTarget={zoomTarget}
+			speedAddition={speedAddition}
 			bind:resorted={resorted}
 			/>
 
@@ -247,7 +271,7 @@
 		<Scrolly bind:value increments={1} top={100}>
 			{#each copy.timeline as step_obj, i}
 			{@const active = value === i}
-			<div class="step {step_obj.addclass}" class:active>
+			<div class="step {step_obj.addclass} steptype_{step_obj.type}" class:active>
 				<Text copy={step_obj.text} type={step_obj.type} time={step_obj.time} add={step_obj.addclass === "longcopy" ? "longcopy" : "shortcopy"} age={Math.round(avgAge)}/>
 			</div>
 			{/each}
@@ -299,12 +323,18 @@
 	}
 	.yearItem.selected {
 		margin: 20px 0;
-		font-size: 16px;
+		font-size: 20px;
 		opacity: 1;
 		font-weight: bold;
+		color: #fff;
+		 text-shadow: -1px 1px 0 #000,
+                1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
 	}
+	.yearItem.selected 
 	.avgAge {
-		margin-top: 3px;
+		margin-top: -1px;
 		font-weight: normal;
 		text-transform: uppercase;
 		font-size: 15px;
@@ -433,7 +463,7 @@ select {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	opacity: 0.4;
+	opacity: 1;
 }
 .leftLabel {
 	text-align: left;
@@ -447,12 +477,15 @@ select {
 .step {
 	pointer-events: none;
 	height: auto;
-	min-height: 50vh;
-	margin: 30vh auto 70vh;
+	min-height: 40vh;
+	margin: 60vh auto 50vh;
 	position: relative;
 	color: #777;
 }
-
+.steptype_invisible {
+	height: 10vh;
+	margin: 5vh auto 5vh;
+}
 .step:first-child {
 	min-height: 0vh !important;
 	margin: 0vh auto !important;
@@ -487,6 +520,6 @@ select {
 .step.active {
 	color: #fff;
 	font-weight: bold;
-	padding-right: 10px;
+/*	padding-right: 10px;*/
 }
 </style>
