@@ -101,6 +101,7 @@ h6 {
 html, #content, header {
 	font-family: "National 2 Web";
 	background: #1E101E;
+	color: var(--color-lightpurple);
 	box-sizing: border-box;
 }
 html {
@@ -112,47 +113,115 @@ html {
 
 
 
+.step {
+	pointer-events: none;
+	height: auto;
+	min-height: 50vh;
+	margin: 90vh auto 0vh;
+	position: relative;
+	color: white;
+/*	opacity: 0.2;*/
+}
+.step.preexploreStep {
+	min-height: 0px;
+}
+.step.exploreStep {
+	height: 120vh;
+	margin-top: 40vh;
+	margin-bottom: 0px !important;
+}
+
+.step.active {
+/*	opacity: 1;*/
+}
+.step.steptype_invisible {
+	min-height: 80vh;
+	margin: 60vh auto 40vh;
+}
+.step:first-child {
+	min-height: 0vh !important;
+	margin: 0vh auto !important;
+}
+.step.longcopy {
+	pointer-events: auto !important;
+	height: auto;
+	background: rgb(30,16,30);
+	background: -moz-linear-gradient(0deg, rgba(30,16,30,0) 0%, rgba(30,16,30,1) 4%, rgba(30,16,30,1) 95%, rgba(30,16,30,0) 100%);
+	background: -webkit-linear-gradient(0deg, rgba(30,16,30,0) 0%, rgba(30,16,30,1) 4%, rgba(30,16,30,1) 95%, rgba(30,16,30,0) 100%);
+	background: linear-gradient(0deg, rgba(30,16,30,0) 0%, rgba(30,16,30,1) 4%, rgba(30,16,30,1) 95%, rgba(30,16,30,0) 100%);
+	backdrop-filter: blur(0.5px);
+	padding: 100px 2em;
+	box-sizing: border-box !important;
+	margin: 60vh auto 80vh;
+	position: relative;
+	pointer-events: none;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+}
+.step.longcopy:before {
+	content: "";
+	position: absolute;
+	height: 70%;
+	width: 100%;
+	display: block;
+	top: 15%;
+	backdrop-filter: blur(2px);
+	z-index: 2;
+}
+
 .textList li {
-	font-size: 16px;
 	line-height: 1.7em;
-	opacity: 0.8;
 }
 .textList p {
 	display: none;
 }
 
-
 .textContainer {
 	width: 98%;
-	max-width: 620px;
 	margin: 0px auto;
-	color: #DFD2DE !important;
+	color: #fff !important;	
 	text-align: left;
-	font-size: 1.1rem;
-	line-height: 1.7rem;
+	font-size: 1.11rem;
+	line-height: 1.8rem;
 	font-weight: normal;
 	font-family: var(--sans);
 	z-index: 3;
 	overflow-x: hidden;
+	border-radius: 2px;
+	max-width: 620px;
 }
 
+
 .textContainer.shortcopy {
-	background: #000;
+	width: 98%;
+	max-width: 620px;
+	margin: 0;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 	padding: 10px;
-	margin: 0px auto;
-	font-family: var(--sans);
+	background: black;
 }
-@media screen and (max-width: 600px) {
-	.textContainer.shortcopy {
-		width: calc(100% - 70px);
-		margin: 0px 0px 0px 10px;
-	}
+.steptype_invisible .textContainer.shortcopy {
+	max-width: none;
+	background: none;
+	text-align: center;
+	padding: 20px;
+	overflow: hidden;
 }
-.textContainer .fadedout {
-	opacity: 0.5;
+.yearLabel {
+	font-weight: bold;
+	font-size: 90px;
+	line-height: 90px;
+	color: var(--color-pinkpurple);
+	text-shadow: -1px 1px 20px #1E101E,
+		1px 1px 20px #1E101E,
+		1px -1px 20px #1E101E,
+		-1px -1px 20px #1E101E;
 }
 .textContainer .citation {
-	opacity: 0.5;
+	opacity: 0.7;
 	font-size: 0.9rem;
 	line-height: 1.1rem;
 }
@@ -172,6 +241,7 @@ html {
 .textContainer p, .textContainer a {
 	margin-bottom: 1.4rem;
 	pointer-events: auto !important;
+	color: var(--color-lightpurple) !important;
 }
 .textContainer p span {
 
@@ -179,31 +249,50 @@ html {
 .textContainer p .hl {
 	border-bottom: 5px solid #C5575E;
 }
-.textContainer p .color_pink {
-	color: #FF8BB2;
-}
 .textContainer strong {
 	color: #FAF0F9 !important;
 }
 .textContainer a {
-	color: #FAF0F9 !important;
+	border-bottom: 1px dotted #999;
 }
-.textContainer .purple {
-	background: #A762C1;
+.textContainer span {
 	color: white;
-	padding: 2px 4px;
+	padding: 2px 3px;
 	margin: 0 2px;
 	border-radius: 1px;
 	white-space:nowrap;
 }
-.textContainer .gray {
-	background: #8C6C73;
-	color: white;
-	padding: 2px 4px;
-	margin: 0 2px;
-	border-radius: 1px;
-	white-space:nowrap;
+.textContainer span.box {
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	margin-right: 3px;
 }
+.textContainer .nodata {
+	background: #5e5149;
+}
+.textContainer .blackpurple {
+	background: #6d3d98;
+}
+.textContainer .red {
+	background: #c54e59;
+}
+.textContainer .orange {
+	background: #94596b;
+}
+.textContainer .pink {
+	background: #ef538e;
+}
+.textContainer .redpink {
+	background: linear-gradient(to right,  #ef538e 0%,#c54e59 80%);
+}
+.textContainer .purpleorange {
+	background: linear-gradient(to right,  #994ea7 0%, #994ea7 50%, #94596b 50%);
+} 
+.textContainer .lightpurple {
+	background: #994ea7;
+}
+
 .textContainer hr {
 	margin: 50px auto;
 	width: 100px;

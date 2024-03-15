@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	export let copy, add, time, age, type;
+	export let copy, add, time, age, type, firstyear;
 
 	function convertToHTML(text) {
 		let finalText = [];
@@ -41,15 +41,18 @@
 </script>
 {#if type != "invisible"}
 <div class="textContainer {add === "longcopy" ? "longcopy" : "shortcopy"}">
-	{#if type == "year"}
-	<p class="time">It's <span>{time}</span>. The average age of people on your screen is <span>{time - 1984}</span>.</p>
-	{/if}
-	
 	{@html convertToHTML(copy)}
 </div>
+{:else if firstyear && time != 1997}
+<div class="textContainer {add === "longcopy" ? "longcopy" : "shortcopy"}">
+	<div class="yearLabel">{time}</div>
+</div>
 {/if}
+
+
+
 <style>
-	
+
 </style>
 
 
