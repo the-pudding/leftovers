@@ -378,7 +378,7 @@
 	}
 	@keyframes jump {
 		0%, 70% { transform: translateX(0); }
-		20% { transform: translateX(20px); }
+		20% { transform: translateX(10px); }
 		35% { transform: translateX(0px); }
 		50% { transform: translateX(20px); }
 	}
