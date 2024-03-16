@@ -50,32 +50,18 @@
 	}
 	const timelineYears = [1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2013,2015,2017,2019,2021]; 
 
-	let sortObject;
-	let resorted = false;
-	let userselect = false;
-	let customSort = false;
+	let resorted = true;
 
 
-	function changeOption(event, us, cs) {
-		userselect = us;
-		customSort = cs;
-		// IF SCRIPT IS DRIVING
-		if (!customSort && !userCustomize) {
-			sortObject = copy.timeline[value].sortby;	
+	function changeOption(customEvent) {
+		if (!customEvent) {
 			color_selected = copy.timeline[value].colors;
-			resorted = true;
-		} else { // IF CUSTOMIZATION IS DRIVING
-			sortObject = {0: color_selected, 1: color_selected, 2: color_selected};
-			
 		}
+		
 		sort_selected = color_selected; 
 		resorted = true;
 		sortOrder = lookup[color_selected].order;
-		if (Array.isArray(lookup[color_selected].colors)) {
-			colors = lookup[color_selected].colors;
-		} else {
-			legendColors = colors;
-		}
+		colors = lookup[color_selected].colors;
 	}
 
 	function dispatchResize() {
@@ -103,7 +89,7 @@
 	let hop_explore = 0;
 	let derivedColors = [];
 	let derivedLabels = [];
-
+	let previous_color_selected = ""; 
 	$: {
 		value = value === undefined ? 0 : value;
 		legendOpacity = copy.timeline[value].legend_visible == -1 ? 0 : 1;
@@ -123,15 +109,16 @@
 		zoomTarget = copy.timeline[value].zoom > 0 ? copy.timeline[value].zoom : 1;
 		sortOrder;
 		derivedColors = colors;
+		derivedColors = derivedColors.filter(item => item !== undefined);
+
 		derivedLabels = lookup[color_selected].labels;
+		derivedLabels = derivedLabels.filter(item => item !== undefined);
 		color_selected, sort_selected, heightOffset;
 		currentYear = Number(copy.timeline[value].time);
 		avgAge = currentYear - 1984;
 		hedOpacity = (value > 0 || value == undefined) ? 0 : 1;
 		if (value != previousValue) {
-			userselect = false;
-			customSort = false
-			changeOption(null, userselect, customSort);
+			changeOption();
 			previousValue = value;
 		}
 		if (lookup[copy.timeline[value].groupby] == undefined) {
@@ -144,6 +131,10 @@
 			heightOffset[2][1] = "3. " + lookup[copy.timeline[value].groupby].right_label;			
 		}
 
+		if (color_selected != previous_color_selected ) {
+			changeOption(true);
+			previous_color_selected = color_selected;
+		}
 	}
 
 	onMount(() => {
@@ -190,14 +181,13 @@
 				<div class="legend" style="opacity:{legendOpacity};">
 					{#key lookup[color_selected].name}
 					
-
 					{#if exploreOpacity == 0}
 					<div class="legendTitle" in:slide={customSlide}>{@html processSmallHed(lookup[color_selected].name)}</div>
 					{:else}
 					<div class="explorebar {hop_explore}">
 						<div class="selectContainer colorby" style="opacity:{exploreOpacity};">
 							<!-- <div class="selectLabel">Color by...</div> -->
-							<select bind:value={color_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
+							<select bind:value={color_selected} style="opacity: {menuOpacity};">
 								{#each Object.entries(lookup) as [key, value]}
 								{#if value.exclude != 1}
 								<option value={value.variable}>{value.name}</option>
@@ -207,6 +197,7 @@
 						</div>
 					</div>
 					{/if}
+					
 
 					{#each derivedColors as color, i}
 					<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide={customSlide}>

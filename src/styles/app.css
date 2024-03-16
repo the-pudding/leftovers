@@ -138,11 +138,8 @@ html {
 	padding-top: 0;
 }
 .step.preexploreStep {
+	padding-bottom: 200vh;
 	min-height: 0px;
-}
-.step.exploreStep {
-	height: 120vh;
-	padding: 40vh 0 0;
 }
 
 .step.active {

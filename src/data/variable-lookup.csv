@@ -19,7 +19,7 @@ gpa,16,HS GPA,,0,2.5,2,2.5,3,1,-1,"[""pink"",""orange"",  ""blackpurple""]","[""
 FAVORITE ICE CREAM (SAQ),17,Favorite ice cream (1997),,1,5,1,5,5,1,-1,"[""blackpurple"",""lightpurple"",""pink"",""orange"",""red""]","[""Chocolate"", ""Vanilla"", ""Strawberry"", ""Butter Pecan"", ""None of these""]",,,
 current_activity,0,What are they doing now?,1,0,2,0,2,3,1,1,"[""pink"",""orange"",""blackpurple""]","[""No college or work"",""Work"",""College""]",,,
 grade,1,Current grade,1,0,12,6,10,5,1,1,"[""blackpurple"",""lightpurple"",""red"",""orange"",""yellow""]","[""6th"",""7th"",""8th"",""9th"",""10th""]\",Lower grade,Higher grade,
-Highest Degree (by year),2,Highest educational degree (so far),,0,4,2,4,3,-1,1,"[""pink"",""orange"",""blackpurple""]","[""HS or less"",""Associate's"",""Bachelor's+""]",Lower edu. attainment,Higher edu. attainment,
+Highest Degree (by year),2,Highest educational degree (so far),,0,4,2,4,3,1,1,"[""pink"",""orange"",""blackpurple""]","[""HS or less"",""Associate's"",""Bachelor's+""]",Lower edu. attainment,Higher edu. attainment,
 income,3,Annual income (most recent response),,12000,60000,15000,60000,5,1,1,"[""pink"",""red"",""orange"",""lightpurple"",""blackpurple""]","[""$15k or less"",""$15k to $30k"",""$30k to $45k"",""$45k to $60k"", ""$60k+""]",Lower income,Higher income,
 age,4,Age,1,10,40,14,35,6,1,1,,,Younger,Older,
 height,5,Height,1,48,72,48,72,6,1,1,,,Shorter,Taller,

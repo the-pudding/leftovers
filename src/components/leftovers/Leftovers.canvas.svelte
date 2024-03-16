@@ -143,7 +143,6 @@
 			for (let i = 0; i < all_people.length; i++) {
 				all_people[i].precalculate();
 			}
-
 			if (currentVar != currentStage || resorted) {
 				calculatePositions();
 			}
@@ -283,7 +282,11 @@
     				// this.target_loc.x = w/2;
     				this.target_loc.y = -60;
     			} else if (this.n == firstPerson && zoom > 2) {
-    				this.target_loc = new p.Vector(w/2, h/3);
+    				if (w > 600) {
+    					this.target_loc = new p.Vector(w/2, h/3);
+    				} else {
+    					this.target_loc = new p.Vector(w/2, h/4);
+    				}
     			}
 
 			    // Additional group-based vertical offset
@@ -419,10 +422,8 @@
 		positionLookup[1] = sortPeople(1);
 		positionLookup[2] = sortPeople(2); 
 		
-		
-
 		currentVar = currentStage;
-		resorted = false;
+		
 		let totalAge = all_people.reduce((accumulator, person) => {
 			return accumulator + person.age;
 		}, 0);
@@ -441,13 +442,13 @@
 			if (w > 600) {
 				heightOffset[key][0] = 0.15 + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .8);	
 			} else {
-				const addPadding = (600 - w) / (600 * 6);
+				const addPadding = (600 - w) / (600 * 4);
 				heightOffset[key][0] = 0.15 + + addPadding + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .7);	
 			}
 			
 			currentRows += rowsPerGroup[key];
 		}
-		
+		resorted = false;
 	}
 
 	function sortPeople(group) {
