@@ -150,7 +150,7 @@ html {
 }
 .step.steptype_invisible {
 	min-height: 80vh;
-	margin: 60vh auto 40vh;
+	padding: 60vh auto 40vh;
 }
 .step:first-child {
 	min-height: 0vh !important;
