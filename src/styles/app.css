@@ -110,6 +110,7 @@ h6 {
 
 html, #content, header {
 	font-family: var(--serif) !important;
+	font-weight: 400;
 	background: #1E101E;
 	color: var(--color-lightpurple);
 	box-sizing: border-box;
