@@ -129,7 +129,7 @@
 			
 			pWidth = Math.sqrt(totalRectArea / 2) / 1.4;
 			pHeight = pWidth*2;
-			p.background(255,255,255,0);
+			p.background("#1E101E");
 			p.resizeCanvas(w, h);
 			p.noStroke();
 
@@ -438,7 +438,13 @@
 		for (let i = 0; i < 3; i++) {
 			const key = [0,1,2][i];
 			const labelPadding = i*.15;
-			heightOffset[key][0] = 0.15 + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .8);
+			if (w > 600) {
+				heightOffset[key][0] = 0.15 + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .8);	
+			} else {
+				const addPadding = (600 - w) / (600 * 6);
+				heightOffset[key][0] = 0.15 + + addPadding + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .7);	
+			}
+			
 			currentRows += rowsPerGroup[key];
 		}
 		

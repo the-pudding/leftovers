@@ -2,6 +2,10 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { slide } from 'svelte/transition';
+	const customSlide = {
+		duration: 1400
+	};
+
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Text from "$components/leftovers/Leftovers.text.svelte";
 	import Canvas from "$components/leftovers/Leftovers.canvas.svelte";
@@ -21,7 +25,7 @@
 	let sortOrder = 1;
 	const topPadding = 0;
 	let avgAge;
-	
+
 	let first = true;
 	let zoomTarget = 1;
 
@@ -32,7 +36,7 @@
 	let padding = 50;
 	let colors = []
 	let legendColors;
-	
+
 	let hexColors = {
 		"nodata": ["#5e5149","#ffffff"],
 		"blackpurple": ["#6d3d98","#ffffff"], // blackpurple
@@ -58,17 +62,15 @@
 		// IF SCRIPT IS DRIVING
 		if (!customSort && !userCustomize) {
 			sortObject = copy.timeline[value].sortby;	
-			// sort_selected = copy.timeline[value].sortby[2];
 			color_selected = copy.timeline[value].colors;
 			resorted = true;
 		} else { // IF CUSTOMIZATION IS DRIVING
-			// sortObject = {0: sort_selected, 1: sort_selected, 2: sort_selected};
 			sortObject = {0: color_selected, 1: color_selected, 2: color_selected};
 			
 		}
 		sort_selected = color_selected; 
 		resorted = true;
-		getSortOrder(color_selected);
+		sortOrder = lookup[color_selected].order;
 		if (Array.isArray(lookup[color_selected].colors)) {
 			colors = lookup[color_selected].colors;
 		} else {
@@ -80,9 +82,10 @@
 		resorted = true;
 	}
 
-	function getSortOrder(n) {
-		sortOrder = 1
+	function processSmallHed(text) {
+		return text.replace(/\((.*?)\)/g, '<div class="smallHed">($1)</div>');
 	}
+
 
 	let legendOpacity = 1;
 	let labelOpacity = 1;
@@ -98,6 +101,8 @@
 	let speedAddition = 0;
 	let hop_years = 0;
 	let hop_explore = 0;
+	let derivedColors = [];
+	let derivedLabels = [];
 
 	$: {
 		value = value === undefined ? 0 : value;
@@ -117,10 +122,12 @@
 		// exploreOpacity = 1;
 		zoomTarget = copy.timeline[value].zoom > 0 ? copy.timeline[value].zoom : 1;
 		sortOrder;
+		derivedColors = colors;
+		derivedLabels = lookup[color_selected].labels;
 		color_selected, sort_selected, heightOffset;
 		currentYear = Number(copy.timeline[value].time);
 		avgAge = currentYear - 1984;
-		hedOpacity = value == 0 ? 1 : 0;
+		hedOpacity = (value > 0 || value == undefined) ? 0 : 1;
 		if (value != previousValue) {
 			userselect = false;
 			customSort = false
@@ -137,19 +144,6 @@
 			heightOffset[2][1] = "3. " + lookup[copy.timeline[value].groupby].right_label;			
 		}
 
-		if (avgAge <= 13) {
-			heightOffset[0][2] = 0;
-			heightOffset[2][2] = 0;
-			heightOffset[1][2] = 0;
-		} else if (avgAge < 17) {
-			heightOffset[0][2] = 1;
-			heightOffset[2][2] = 1;
-			heightOffset[1][2] = 1;
-		} else  { 
-			heightOffset[0][2] = 1;
-			heightOffset[2][2] = 1;
-			heightOffset[1][2] = 1;
-		}
 	}
 
 	onMount(() => {
@@ -175,7 +169,7 @@
 <div class="outsideContainer">
 	<section id="scrolly">
 		<div class="visualContainer" bind:clientWidth={w} bind:clientHeight={h} style="width: 100%;">
-			<div class="timeline" style="left:calc(50% - {(currentYear - 1997) * 80 + 40}px); opacity: {timelineOpacity}; width: {timelineYears.length*100 + 50}px;">
+			<div class="timeline" style="left:calc(50% - {(timelineYears.indexOf(currentYear)) * 80 + 40}px); opacity: {timelineOpacity}; width: {timelineYears.length*100 + 50}px;">
 				{#each timelineYears as year, i (i)}
 				<div class="yearItem {hop_years}" class:selected={currentYear == (year)}>
 					{year}
@@ -186,51 +180,40 @@
 				{/each}
 			</div>
 
-			<div class="explorebar {hop_explore}">
-<!-- 				<div class="selectContainer sortby" style="opacity:{exploreOpacity};">
-					<div class="selectLabel">Sort by...</div>
-					<select bind:value={sort_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
-						 <option value={"default"}>Current color</option>
-						{#each Object.entries(lookup) as [key, value]}
-						{#if value.exclude != 1}
-						<option value={value.variable}>{value.name}</option>
-						{/if}
-						{/each}
-					</select>
-				</div> -->
-
-				<div class="selectContainer colorby" style="opacity:{exploreOpacity};">
-					<div class="selectLabel">Color by...</div>
-					<select bind:value={color_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
-						{#each Object.entries(lookup) as [key, value]}
-						{#if value.exclude != 1}
-						<option value={value.variable}>{value.name}</option>
-						{/if}
-						{/each}
-					</select>
-				</div>
-			</div>
+			
 
 			<div class="dashboard">
-
-				<!----------------------
-				SELECTOR
-				----------------------->
-				
-
 				<!----------------------
 				LEGEND
 				----------------------->
 
 				<div class="legend" style="opacity:{legendOpacity};">
 					{#key lookup[color_selected].name}
-					<div class="legendTitle" in:slide>{lookup[color_selected].name}</div>
-					{#each colors as color, i}
-					<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide>
-						{lookup[color_selected].labels[sortOrder === -1 ? colors.length - 1 - i : i]}
+					
+
+					{#if exploreOpacity == 0}
+					<div class="legendTitle" in:slide={customSlide}>{@html processSmallHed(lookup[color_selected].name)}</div>
+					{:else}
+					<div class="explorebar {hop_explore}">
+						<div class="selectContainer colorby" style="opacity:{exploreOpacity};">
+							<!-- <div class="selectLabel">Color by...</div> -->
+							<select bind:value={color_selected} on:change={(event) => changeOption(event, true, true)} style="opacity: {menuOpacity};">
+								{#each Object.entries(lookup) as [key, value]}
+								{#if value.exclude != 1}
+								<option value={value.variable}>{value.name}</option>
+								{/if}
+								{/each}
+							</select>
+						</div>
+					</div>
+					{/if}
+
+					{#each derivedColors as color, i}
+					<div class="colorLabel" style="background:{hexColors[color][0]}; color:{hexColors[color][1]};" in:slide={customSlide}>
+						{derivedLabels[i]}
 					</div>
 					{/each}
-					<div class="colorLabel" style="background:{hexColors['nodata'][0]}; color:{hexColors['nodata'][1]};" in:slide>
+					<div class="colorLabel" style="background:{hexColors['nodata'][0]}; color:{hexColors['nodata'][1]};" in:slide={customSlide}>
 						No data
 					</div>
 					{/key}
@@ -302,7 +285,7 @@
 				<div class="byline">by <a href="https://pudding.cool/author/alvin-chang/">Alvin Chang</a></div>
 			</div>
 		</div>
-		<Scrolly bind:value increments={1} top={100}>
+		<Scrolly bind:value top={100}>
 			{#each copy.timeline as step_obj, i}
 			{@const active = value === i}
 			{@const is_firstyear = copy.timeline.findIndex(item => item.time === step_obj.time) === i}
@@ -411,28 +394,32 @@
 		height: 0px;
 	}
 	.explorebar {
-		position: absolute;
-		right: 10px;
-		bottom: 10px
+		flex-shrink: 0;
+		width: 100%;
+		text-align: left;
+		margin-bottom: 10px;
+		font-size: var(--24px);
+		margin-top: 40px;
+		align-items: flex-start;
 	}
-	.explorebar.hop_explore {
+	/*.explorebar.hop_explore {
 		animation: bounce 1s ease-in-out infinite;
 	}
 	@keyframes bounce {
 		0%, 70% { transform: translateY(0); }
-		20% { transform: translateY(-20px); }
+		20% { transform: translateY(-10px); }
 		35% { transform: translateY(0px); }
-		50% { transform: translateY(-20px); }
-	}
+		50% { transform: translateY(-10px); }
+	}*/
 	.selectContainer {
 		display: inline-block;
-		font-size: 16px;
+		font-size: 15px;
 		color: var(--color-lightpurple);
 	}
 	select {
 		margin: 5px 20px 5px 0;
 		background: black;
-		border: .5px solid var(--color-lightpurple);
+		border: 1px solid white;
 		color: var(--color-lightpurple);
 		transition: all 500ms cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
 		transition-timing-function: cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
@@ -442,7 +429,14 @@
 		width: 100%;
 		text-align: left;
 		margin-bottom: 10px;
-		font-size: 25px;
+		margin-top: 20px;
+		font-size: var(--24px);
+	}
+
+	@media screen and (max-width: 600px) {
+		.legendTitle {
+			font-size: var(--20px);
+		}
 	}
 	.legend {
 		display: flex;
@@ -450,12 +444,17 @@
 		align-items: flex-start; 
 		width: 90%;
 		max-width: 700px;
-		height: 20px;
-		margin: 20px 0 0 10px;
+		margin: 50px 0 0 10px;
 		text-align: right;
 		flex-wrap: wrap;
 		transition: opacity 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
 		transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+		font-size: var(--16px);
+	}
+	@media screen and (max-width: 600px) {
+		.legend {
+			font-size: var(--14px);
+		}
 	}
 	.firstValue, .lastValue {
 		flex: 0 0 auto;
@@ -489,12 +488,13 @@
 	}
 	.visualContainer {
 		position: sticky;
-		top: 0em;
+		top: 0px;
 		left: 0px;
+		width: 100%;
 		height: 100vh;
 	}
 	#groupLabels {
-		font-size: 16px;
+		font-size: var(--16px);
 		position: absolute;
 		width: 100%;
 		top: -20px;
@@ -523,7 +523,12 @@
 	.secondaryGroupLabel {
 		display: inline-block;
 		opacity: 0.5;
-		font-size: 16px;
+		font-size: var(--16px);
+	}
+	@media screen and (max-width: 1400px) {
+		.secondaryGroupLabel {
+			display: none;
+		}
 	}
 	.scaleLabels {
 		position: absolute;
