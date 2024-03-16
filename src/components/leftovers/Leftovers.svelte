@@ -412,6 +412,7 @@
 		background: black;
 		border: 1px solid white;
 		color: var(--color-lightpurple);
+		font-family: var(--serif);
 		transition: all 500ms cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
 		transition-timing-function: cubic-bezier(0.420, 0.000, 0.435, 1.000); /* custom */
 	}
@@ -473,10 +474,6 @@
 		min-width: 40px;
 	}
 
-
-	#scrolly {
-		font-family: "National 2 Web";
-	}
 	.visualContainer {
 		position: sticky;
 		top: 0px;

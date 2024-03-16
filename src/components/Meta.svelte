@@ -1,9 +1,9 @@
 <script>
-	export let title = "Title TK";
-	export let description = "Description TK";
-	export let url = "https://pudding.cool";
+	export let title = "This is a teenager";
+	export let description = "Watch hundreds of teenagers grow up into adults – and see how their lives turn out";
+	export let url = "https://pudding.cool/2024/04/teenagers";
 	export let keywords = "";
-	export let preloadFont = [];
+	export let preloadFont = ["National2Web-Regular", "National2Web-Bold"];
 </script>
 
 <svelte:head>

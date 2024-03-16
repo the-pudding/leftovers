@@ -386,7 +386,7 @@
 					p.textAlign(p.CENTER, p.BOTTOM);
 					const alexWidth = pWidth * this.personWeight;
 					if (zoom > 3) {
-						p.text("Alex", imgX, imgY - 6, pWidth * this.personWeight);
+						// p.text("Alex", imgX, imgY - 6, pWidth * this.personWeight);
 						p.triangle(imgX + alexWidth/2, imgY, imgX + alexWidth * .25, imgY - 5, imgX + alexWidth * .75, imgY - 5);
 					} else {
 						p.stroke("#000000");

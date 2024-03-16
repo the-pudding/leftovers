@@ -109,7 +109,7 @@ h6 {
 }
 
 html, #content, header {
-	font-family: "National 2 Web";
+	font-family: var(--serif) !important;
 	background: #1E101E;
 	color: var(--color-lightpurple);
 	box-sizing: border-box;
@@ -207,8 +207,7 @@ html {
 	text-align: left;
 	font-size: 1.11rem;
 	line-height: 1.8rem;
-	font-weight: normal;
-	font-family: var(--sans);
+/*	font-weight: normal;*/
 	z-index: 3;
 	overflow-x: hidden;
 	border-radius: 2px;
