@@ -77,9 +77,19 @@ h2 {
 }
 
 h3 {
-	font-size: var(--28px, 28px);
+	font-size: var(--20px, 20px);
+	line-height: 25px;
+	font-weight: bold;
+	margin-top: 30px;
 }
-
+@media screen and (max-width: 600px) {
+	h3 {
+	font-size: var(--18px, 18px);
+	line-height: 23px;
+	font-weight: bold;
+	margin-top: 24px;
+}
+}
 h4 {
 	font-size: var(--24px, 24px);
 }
@@ -242,6 +252,7 @@ html {
 	opacity: 0.5;
 	font-size: 0.9rem;
 	line-height: 1.1rem;
+	margin-bottom: 25px;
 }
 ::selection, ::selection {
 	background: #91408D !important;
@@ -342,6 +353,8 @@ html {
 
 .imageContainer {
 	width: 100%;
+	margin-bottom: 10px;
+	margin-top: 0;
 }
 .imageContainer img {
 	width: 100%;
