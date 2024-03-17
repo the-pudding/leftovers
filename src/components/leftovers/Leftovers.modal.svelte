@@ -58,7 +58,7 @@
 		if (k == "height" && value != undefined && value > 0) {
 			value = inchesToFeetAndInches(value); 
 		}
-		if (k == "income" && value != undefined && value > 0) {
+		if ( (k == "income" || k =="NET WORTH OF HOUSEHOLD ACCORDING TO PARENT") && value != undefined && value > 0) {
 			value = "$" + formatNumberWithCommas(value)
 		}
 		return value < 0 || value == undefined ? "--" : value + suffix;

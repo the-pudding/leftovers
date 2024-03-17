@@ -186,8 +186,8 @@
 		p.mouseClicked = () => {
 			clickedPerson = null;
 			for (let i = 0; i < all_people.length; i++) {
-				if (Math.abs(all_people[i].loc.x - p.mouseX) < pWidth/2) {
-					if (Math.abs(all_people[i].loc.y - p.mouseY) < pHeight/2) {
+				if (Math.abs(all_people[i].loc.x - p.mouseX) < pWidth/1.5) {
+					if (Math.abs(all_people[i].loc.y - p.mouseY) < pHeight/1.5) {
 						clickedPerson = all_people[i].n;
 					}
 				}
