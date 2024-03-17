@@ -2,7 +2,7 @@
 	import P5 from 'p5-svelte';
 	import { onMount } from 'svelte';
 
-	export let people, currentYear, w, h, padding, topPadding, colors, lookup, heightOffset, currentStage, resorted, sortOrder, color_selected, sort_selected, labelOpacity, zoomTarget, speedAddition, prefersReducedMotion, groupings, celebrate; 
+	export let people, currentYear, w, h, padding, topPadding, colors, lookup, heightOffset, currentStage, resorted, sortOrder, color_selected, sort_selected, labelOpacity, zoomTarget, speedAddition, prefersReducedMotion, groupings, celebrate, clickedPerson; 
 
 	// import human_lookup from "$data/lookup-humanwords.json"
 
@@ -183,6 +183,17 @@
 			return [0,0];
 		}
 
+		p.mouseClicked = () => {
+			clickedPerson = null;
+			for (let i = 0; i < all_people.length; i++) {
+				if (Math.abs(all_people[i].loc.x - p.mouseX) < pWidth/2) {
+					if (Math.abs(all_people[i].loc.y - p.mouseY) < pHeight/2) {
+						clickedPerson = all_people[i].n;
+					}
+				}
+			}
+		}
+
 
 		class Person {
 			
@@ -275,8 +286,8 @@
     			this.target_loc.y = row * (pHeight * spacingMult) + padding/2;
 
     			if (celebrate == 1 && !prefersReducedMotion) {
-					this.target_loc = new p.Vector(w * Math.random(p.frameCount + this.n), h/1.5 * Math.random(p.frameCount + this.n));
-				}
+    				this.target_loc = new p.Vector(w * Math.random(p.frameCount + this.n), h/1.5 * Math.random(p.frameCount + this.n));
+    			}
 
     			if (this.n != firstPerson && zoom > 2) {
     				// this.target_loc.x = w/2;
@@ -394,9 +405,11 @@
 						p.triangle(imgX + alexWidth/2 + 1, imgY, imgX + alexWidth * .25, imgY - 7, imgX + alexWidth * .75 + 1, imgY - 7);
 					}
 				}
-				// if (people[this.n][year_index][lookup["total_trauma"].index] < 3) {
-				// 	p.tint(255, 50);
-				// }
+				if (clickedPerson != null) {
+					if(this.n != clickedPerson) {
+						p.tint(255, 50);	
+					}
+				}
 				try {
 					p.image(sprites[this.race + "-" + this.fill][imageCode.join("-")][spriteIndex], imgX, imgY, pWidth * this.personWeight, pHeight * this.personHeight);	
 				} catch {

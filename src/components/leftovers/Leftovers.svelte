@@ -9,6 +9,7 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Text from "$components/leftovers/Leftovers.text.svelte";
 	import Canvas from "$components/leftovers/Leftovers.canvas.svelte";
+	import Modal from "$components/leftovers/Leftovers.modal.svelte";
 	let prefersReducedMotion = false;
 
 
@@ -87,6 +88,8 @@
 	let speedAddition = 0;
 	let hop_years = 0;
 	let hop_explore = 0;
+	let clickedPerson = null;
+	
 	let derivedColors = [];
 	let derivedLabels = [];
 	let previous_color_selected = ""; 
@@ -107,7 +110,7 @@
 		}
 		// exploreOpacity = 1;
 		zoomTarget = copy.timeline[value].zoom > 0 ? copy.timeline[value].zoom : 1;
-		sortOrder;
+		sortOrder, clickedPerson;
 		derivedColors = colors;
 		derivedColors = derivedColors.filter(item => item !== undefined);
 
@@ -136,6 +139,8 @@
 			previous_color_selected = color_selected;
 		}
 	}
+
+	
 
 	onMount(() => {
 		const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -266,15 +271,17 @@
 			groupings={groupings}
 			celebrate={copy.timeline[value].celebrate}
 			bind:resorted={resorted}
+			bind:clickedPerson={clickedPerson}
 			/>
 
 			<!----------------------
 			HEADLINE
 			----------------------->
-			<div class="headlineContainer" style="opacity:{hedOpacity};">
+			<div class="headlineContainer" style="opacity: {hedOpacity}; {hedOpacity === 0 ? 'display: none;' : ''}">
 				<h1>{copy.Hed}</h1>
 				<div class="byline">by <a href="https://pudding.cool/author/alvin-chang/">Alvin Chang</a></div>
 			</div>
+
 		</div>
 		<Scrolly bind:value top={100}>
 			{#each copy.timeline as step_obj, i}
@@ -286,10 +293,19 @@
 			{/each}
 
 		</Scrolly>
+
+		
+		<Modal people={people} lookup={lookup} clickedPerson={clickedPerson} currentYear={currentYear}>
+		</Modal>
+		
+		
 	</section>
+	
 </div>
 
 <style>
+
+	
 	.headlineContainer {
 		width: 90%;
 		max-width: 800px;
