@@ -85,12 +85,10 @@
 
 	const sketch = (p) => {
 		let img;
-		let font;
 		let zoom = 1;
 		let firstPersonCoords = [0,0];
 
 		p.preload = () => {
-			font = p.loadFont('assets/leftovers/National2Web-Regular.otf');
 			for (let i in sprites) {
 				sprites[i].loadimage = p.loadImage('assets/leftovers/' + i + '.png');
 			}
@@ -100,10 +98,7 @@
 			p.createCanvas(w, h);
 			for (let i = 0; i < maxPeople; i++) {
 				all_people[i] = new Person(i);
-			}	
-			p.textFont(font);
-			p.textSize(7);
-			p.textLeading(7);
+			}
 
 			let numFrames = spriteRows * spriteCols;
 			for (let j in sprites) {
@@ -453,7 +448,7 @@
 			const key = [0,1,2][i];
 			const labelPadding = i*.15;
 			if (w > 600) {
-				heightOffset[key][0] = 0.15 + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .8);	
+				heightOffset[key][0] = 0.16 + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .8);	
 			} else {
 				const addPadding = (600 - w) / (600 * 4);
 				heightOffset[key][0] = 0.15 + + addPadding + labelPadding + ( (currentRows * pHeight * spacingMult + labelPadding) / h * .7);	

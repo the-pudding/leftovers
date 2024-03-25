@@ -86,7 +86,6 @@
 	let previousValue;
 	let key = 0;
 	let speedAddition = 0;
-	let hop_years = 0;
 	let hop_explore = 0;
 	let clickedPerson = null;
 	
@@ -101,7 +100,6 @@
 		exploreOpacity = copy.timeline[value].explore_visible == 1 ? 1 : 0;
 		speedAddition = copy.timeline[value].speed == 0 ? 0 : 10;
 		groupings = copy.timeline[value].groupby == undefined ? lookup["current_activity"].index : lookup[copy.timeline[value].groupby].index;
-		hop_years = copy.timeline[value].hop_years == 1 ? "hop_years" : "";
 		hop_explore = copy.timeline[value].hop_explore == 1 ? "hop_explore" : "";
 		if (copy.timeline[value].zoom != 4 && copy.timeline[value].labels_visible == -1 && copy.timeline[value].colors != "FAVORITE ICE CREAM (SAQ)") {
 			defaultLabelOpacity = 1;
@@ -167,7 +165,7 @@
 		<div class="visualContainer" bind:clientWidth={w} bind:clientHeight={h} style="width: 100%;">
 			<div class="timeline" style="left:calc(50% - {(timelineYears.indexOf(currentYear)) * 80 + 40}px); opacity: {timelineOpacity}; width: {timelineYears.length*100 + 50}px;">
 				{#each timelineYears as year, i (i)}
-				<div class="yearItem {hop_years}" class:selected={currentYear == (year)}>
+				<div class="yearItem" class:selected={currentYear == (year)}>
 					{year}
 					{#if currentYear == year}
 					<div class="avgAge" in:slide={{ duration: 400 }}>Avg age {avgAge}</div>
@@ -363,15 +361,7 @@
 		1px -1px 0 #000,
 		-1px -1px 0 #000;
 	}
-	.yearItem.selected.hop_years {
-		animation: jump 1.6s ease-in-out infinite;
-	}
-	@keyframes jump {
-		0%, 70% { transform: translateX(0); }
-		20% { transform: translateX(10px); }
-		35% { transform: translateX(0px); }
-		50% { transform: translateX(20px); }
-	}
+	
 	.yearItem.selected 
 	.avgAge {
 		margin-top: -4px;
@@ -488,6 +478,7 @@
 		margin: 2px;
 		padding: 0 4px;
 		min-width: 40px;
+		text-shadow: 0px 0px 4px #000;
 	}
 
 	.visualContainer {
@@ -548,5 +539,4 @@
 	.rightLabel {
 		text-align: right;
 	}
-
 </style>
