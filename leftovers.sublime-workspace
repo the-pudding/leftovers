@@ -91,6 +91,408 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/components/leftovers/Leftovers.svelte",
+			"redo_stack":
+			[
+				[
+					91,
+					1,
+					"insert",
+					{
+						"characters": "7"
+					},
+					"AQAAAEI1AAAAAAAAQjUAAAAAAAABAAAANw",
+					"AQAAAAAAAAABAAAAQzUAAAAAAABDNQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					90,
+					1,
+					"left_delete",
+					null,
+					"AQAAAEI1AAAAAAAAQzUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAQjUAAAAAAABCNQAAAAAAAAAAAAAAAPC/"
+				]
+			],
+			"settings":
+			{
+				"buffer_size": 14895,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					15,
+					2,
+					"left_delete",
+					null,
+					"AgAAADMVAAAAAAAAMxUAAAAAAAALAAAAe2hvcF95ZWFyc30yFQAAAAAAADIVAAAAAAAAAQAAACA",
+					"AQAAAAAAAAABAAAAPhUAAAAAAAAzFQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					26,
+					1,
+					"left_delete",
+					null,
+					"AQAAAO8rAAAAAAAA7ysAAAAAAAAAAQAALnllYXJJdGVtLnNlbGVjdGVkLmhvcF95ZWFycyB7CgkJYW5pbWF0aW9uOiBqdW1wIDEuNnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7Cgl9CglAa2V5ZnJhbWVzIGp1bXAgewoJCTAlLCA3MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMCk7IH0KCQkyMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMTBweCk7IH0KCQkzNSUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMHB4KTsgfQoJCTUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWCgyMHB4KTsgfQoJfQ",
+					"AQAAAAAAAAABAAAA7ysAAAAAAADvLAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					36,
+					2,
+					"left_delete",
+					null,
+					"AgAAAEIJAAAAAAAAQgkAAAAAAAATAAAACWxldCBob3BfeWVhcnMgPSAwO0EJAAAAAAAAQQkAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAVQkAAAAAAABCCQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					40,
+					4,
+					"left_delete",
+					null,
+					"BAAAANsLAAAAAAAA2wsAAAAAAABDAAAAaG9wX3llYXJzID0gY29weS50aW1lbGluZVt2YWx1ZV0uaG9wX3llYXJzID09IDEgPyAiaG9wX3llYXJzIiA6ICIiO9oLAAAAAAAA2gsAAAAAAAABAAAACdkLAAAAAAAA2QsAAAAAAAABAAAACdgLAAAAAAAA2AsAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAA2wsAAAAAAAAeDAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					47,
+					1,
+					"reindent",
+					null,
+					"AQAAAAY6AAAAAAAABzoAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAABjoAAAAAAAAGOgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					48,
+					1,
+					"paste",
+					null,
+					"AQAAAAc6AAAAAAAANDoAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAABzoAAAAAAAAHOgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					50,
+					1,
+					"reindent",
+					{
+						"single_line": false
+					},
+					"AwAAABk6AAAAAAAAGzoAAAAAAAAAAAAAFToAAAAAAAAVOgAAAAAAAAQAAAAgICAgMToAAAAAAAAyOgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAAAAAAAAAAA9OgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					56,
+					1,
+					"paste",
+					null,
+					"AgAAAAg6AAAAAAAAEjoAAAAAAAAAAAAAEjoAAAAAAAASOgAAAAAAAAoAAABwNV9sb2FkaW5n",
+					"AQAAAAAAAAABAAAACDoAAAAAAAASOgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					58,
+					1,
+					"left_delete",
+					null,
+					"AQAAAAc6AAAAAAAABzoAAAAAAAABAAAALg",
+					"AQAAAAAAAAABAAAACDoAAAAAAAAIOgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					59,
+					1,
+					"insert",
+					{
+						"characters": "#"
+					},
+					"AQAAAAc6AAAAAAAACDoAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAABzoAAAAAAAAHOgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					64,
+					1,
+					"cut",
+					null,
+					"AQAAAAc6AAAAAAAABzoAAAAAAAAsAAAAI3A1X2xvYWRpbmcgewoJCWRpc3BsYXk6IG5vbmUgIWltcG9ydGFudDsKCX0",
+					"AQAAAAAAAAABAAAABzoAAAAAAAAzOgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					66,
+					2,
+					"left_delete",
+					null,
+					"AgAAAAY6AAAAAAAABjoAAAAAAAABAAAACQU6AAAAAAAABToAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAABzoAAAAAAAAGOgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					86,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAACo1AAAAAAAAKzUAAAAAAAAAAAAAKzUAAAAAAAAtNQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAKjUAAAAAAAAqNQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					87,
+					1,
+					"paste",
+					null,
+					"AQAAAC01AAAAAAAASzUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAALTUAAAAAAAAtNQAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "src/styles/app.css",
+			"settings":
+			{
+				"buffer_size": 8242,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					3,
+					1,
+					"insert",
+					{
+						"characters": "\n\n"
+					},
+					"AgAAAOMfAAAAAAAA5B8AAAAAAAAAAAAA5B8AAAAAAADlHwAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4x8AAAAAAADjHwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					4,
+					1,
+					"paste",
+					null,
+					"AQAAAOUfAAAAAAAAESAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA5R8AAAAAAADlHwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					12,
+					1,
+					"insert",
+					{
+						"characters": "\ntext-sh"
+					},
+					"CQAAAMAYAAAAAAAAwRgAAAAAAAAAAAAAwRgAAAAAAADCGAAAAAAAAAAAAADCGAAAAAAAAMMYAAAAAAAAAAAAAMMYAAAAAAAAxBgAAAAAAAAAAAAAxBgAAAAAAADFGAAAAAAAAAAAAADFGAAAAAAAAMYYAAAAAAAAAAAAAMYYAAAAAAAAxxgAAAAAAAAAAAAAxxgAAAAAAADIGAAAAAAAAAAAAADIGAAAAAAAAMkYAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAwBgAAAAAAADAGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"insert",
+					{
+						"characters": "adow"
+					},
+					"BAAAAMkYAAAAAAAAyhgAAAAAAAAAAAAAyhgAAAAAAADLGAAAAAAAAAAAAADLGAAAAAAAAMwYAAAAAAAAAAAAAMwYAAAAAAAAzRgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAyRgAAAAAAADJGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					1,
+					"insert_snippet",
+					{
+						"contents": ":$0;"
+					},
+					"AQAAAM0YAAAAAAAAzxgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzRgAAAAAAADNGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					15,
+					1,
+					"insert",
+					{
+						"characters": " 0px"
+					},
+					"BAAAAM4YAAAAAAAAzxgAAAAAAAAAAAAAzxgAAAAAAADQGAAAAAAAAAAAAADQGAAAAAAAANEYAAAAAAAAAAAAANEYAAAAAAAA0hgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzhgAAAAAAADOGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					16,
+					1,
+					"insert",
+					{
+						"characters": " 0px"
+					},
+					"BAAAANIYAAAAAAAA0xgAAAAAAAAAAAAA0xgAAAAAAADUGAAAAAAAAAAAAADUGAAAAAAAANUYAAAAAAAAAAAAANUYAAAAAAAA1hgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA0hgAAAAAAADSGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					17,
+					1,
+					"insert",
+					{
+						"characters": " 12px"
+					},
+					"BQAAANYYAAAAAAAA1xgAAAAAAAAAAAAA1xgAAAAAAADYGAAAAAAAAAAAAADYGAAAAAAAANkYAAAAAAAAAAAAANkYAAAAAAAA2hgAAAAAAAAAAAAA2hgAAAAAAADbGAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1hgAAAAAAADWGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
+					1,
+					"insert",
+					{
+						"characters": " #000"
+					},
+					"BQAAANsYAAAAAAAA3BgAAAAAAAAAAAAA3BgAAAAAAADdGAAAAAAAAAAAAADdGAAAAAAAAN4YAAAAAAAAAAAAAN4YAAAAAAAA3xgAAAAAAAAAAAAA3xgAAAAAAADgGAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2xgAAAAAAADbGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					22,
+					2,
+					"left_delete",
+					null,
+					"AgAAANgYAAAAAAAA2BgAAAAAAAABAAAAMtcYAAAAAAAA1xgAAAAAAAABAAAAMQ",
+					"AQAAAAAAAAABAAAA2RgAAAAAAADZGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					23,
+					1,
+					"insert",
+					{
+						"characters": "7"
+					},
+					"AQAAANcYAAAAAAAA2BgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1xgAAAAAAADXGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					24,
+					1,
+					"left_delete",
+					null,
+					"AQAAANcYAAAAAAAA1xgAAAAAAAABAAAANw",
+					"AQAAAAAAAAABAAAA2BgAAAAAAADYGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					25,
+					1,
+					"insert",
+					{
+						"characters": "2"
+					},
+					"AQAAANcYAAAAAAAA2BgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1xgAAAAAAADXGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					26,
+					1,
+					"left_delete",
+					null,
+					"AQAAANcYAAAAAAAA1xgAAAAAAAABAAAAMg",
+					"AQAAAAAAAAABAAAA2BgAAAAAAADYGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					27,
+					1,
+					"insert",
+					{
+						"characters": "4"
+					},
+					"AQAAANcYAAAAAAAA2BgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1xgAAAAAAADXGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					30,
+					1,
+					"cut",
+					null,
+					"AQAAAMEYAAAAAAAAwRgAAAAAAAAfAAAACXRleHQtc2hhZG93OiAwcHggMHB4IDRweCAjMDAwOw",
+					"AQAAAAAAAAABAAAA4BgAAAAAAADBGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					33,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAGYXAAAAAAAAZxcAAAAAAAAAAAAAZxcAAAAAAABoFwAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAZhcAAAAAAABmFwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					34,
+					1,
+					"paste",
+					null,
+					"AQAAAGgXAAAAAAAAhxcAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAaBcAAAAAAABoFwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					1,
+					"left_delete",
+					null,
+					"AQAAAGgXAAAAAAAAaBcAAAAAAAABAAAACQ",
+					"AQAAAAAAAAABAAAAaRcAAAAAAABpFwAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "src/components/leftovers/Leftovers.canvas.svelte",
+			"settings":
+			{
+				"buffer_size": 15068,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					39,
+					2,
+					"left_delete",
+					null,
+					"AgAAAHEIAAAAAAAAcQgAAAAAAABCAAAACQkJZm9udCA9IHAubG9hZEZvbnQoJ2Fzc2V0cy9sZWZ0b3ZlcnMvTmF0aW9uYWwyV2ViLVJlZ3VsYXIub3RmJyk7cAgAAAAAAABwCAAAAAAAAAEAAAAK",
+					"AQAAAAAAAAABAAAAswgAAAAAAABxCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					42,
+					2,
+					"left_delete",
+					null,
+					"AgAAAB0IAAAAAAAAHQgAAAAAAAALAAAACQlsZXQgZm9udDscCAAAAAAAABwIAAAAAAAAAQAAAAo",
+					"AQAAAAAAAAABAAAAKAgAAAAAAAAdCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					47,
+					2,
+					"left_delete",
+					null,
+					"AgAAAFMJAAAAAAAAUwkAAAAAAAA8AAAACgkJCXAudGV4dEZvbnQoZm9udCk7CgkJCXAudGV4dFNpemUoNyk7CgkJCXAudGV4dExlYWRpbmcoNyk7UgkAAAAAAABSCQAAAAAAAAEAAAAJ",
+					"AQAAAAAAAAABAAAAjwkAAAAAAABTCQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					56,
+					1,
+					"left_delete",
+					null,
+					"AQAAABM2AAAAAAAAEzYAAAAAAAABAAAANQ",
+					"AQAAAAAAAAABAAAAFDYAAAAAAAAUNgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					57,
+					1,
+					"insert",
+					{
+						"characters": "6"
+					},
+					"AQAAABM2AAAAAAAAFDYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAEzYAAAAAAAATNgAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "src/components/Meta.svelte",
+			"settings":
+			{
+				"buffer_size": 1634,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -185,7 +587,6 @@
 		"/Users/alvinchang/apps/leftovers/src",
 		"/Users/alvinchang/apps/leftovers/src/components",
 		"/Users/alvinchang/apps/leftovers/src/components/leftovers",
-		"/Users/alvinchang/apps/leftovers/src/components/leftovers-video",
 		"/Users/alvinchang/apps/leftovers/src/data",
 		"/Users/alvinchang/apps/leftovers/src/styles"
 	],
@@ -322,7 +723,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 42.0
 	},
 	"find_in_files":
 	{
@@ -337,6 +738,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			".legend",
+			"legend",
+			"pink",
+			"font",
+			"hop_ye",
+			"hope",
+			"hop_years",
 			"calculateModalContents",
 			"hedOpac",
 			"opacity",
@@ -457,14 +865,7 @@
 			"rowsPerGroup",
 			"heightOffset",
 			".timeline",
-			"timeline",
-			"yearItem",
-			"#fff",
-			"white",
-			"color:",
-			"color: ",
-			"text-sh",
-			"avgAge"
+			"timeline"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -488,6 +889,131 @@
 		{
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/components/leftovers/Leftovers.svelte",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14895,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13299,
+								13299
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Svelte/Svelte.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 8076.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/styles/app.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8242,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6003,
+								6003
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4939.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/components/leftovers/Leftovers.canvas.svelte",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13844,
+								13844
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Svelte/Svelte.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 7675.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/components/Meta.svelte",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1634,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Svelte/Svelte.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
 			]
 		}
 	],
