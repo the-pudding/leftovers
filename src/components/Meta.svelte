@@ -4,6 +4,7 @@
 		"Watch hundreds of teenagers grow up into adults – and see how their lives turn out";
 	export let url = "https://pudding.cool/2024/03/teenagers";
 	export let keywords = "teenager, survey, data";
+	export let preloadFont = [];
 </script>
 
 <svelte:head>
