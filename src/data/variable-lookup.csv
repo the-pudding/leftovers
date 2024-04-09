@@ -34,7 +34,7 @@ Health limits type of work,13,Health limits type of work (this year),1,0,1,0,1,2
 Household income (how many time more than poverty),14,Household income vs. poverty line (most recent response) ,1,0,5,1,5,4,1,1,,"[""pink"", ""orange"", ""lightpurple"", ""blackpurple""]","[""In poverty"",""1-2x"",""3-4x"",""5x or more""]",Lower income,Higher income,
 grade_repeat,15,Repeated grades (thus far),,0,2,0,2,3,-1,1,,"[""blackpurple"",""orange"",""pink""]","[0,1,""2+""]",Fewer repeated,More repeated,
 suspension,16,Suspensions (thus far),,0,2,0,2,3,-1,1,,"[""blackpurple"",""orange"",""pink""]","[0,1,""2+""]",Fewer suspensions,More suspensions,
-arrest,17,Arrests (thus far),,0,2,0,2,3,-1,1,,"[""blackpurple"",""orange"",""pink""]","[0,1,""2+""]",Fewer arrests,More arrests,
+arrest,17,Arrests (thus far),1,0,2,0,2,3,-1,1,,"[""blackpurple"",""orange"",""pink""]","[0,1,""2+""]",Fewer arrests,More arrests,
 victim,18,Victim of crime (thus far),,0,2,0,1,2,-1,1,,"[""blackpurple"",""pink""]","[""No"",""Yes""]",Not victim of a crime,A victim of a crime,
 homeless,19,Homeless events (thus far),,0,2,0,2,3,-1,1,,"[""blackpurple"",""orange"",""pink""]","[0,1,""2+""]",Never homeless,More experiences being homeless,
 relative_die,20,Relatives died (thus far),,0,2,0,2,3,-1,1,,"[""blackpurple"",""orange"",""pink""]","[0,1,""2+""]",Fewer close relatives died,More close relatives died,

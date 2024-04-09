@@ -219,6 +219,7 @@
 				<!----------------------
 				LABELS ON CHART
 				----------------------->
+				{#if copy.timeline[value].celebrate != 1}
 				<div id="groupLabels" style="height: {h}px;">
 					<div class="groupLabel" style="top:{heightOffset[0][0]*h*.99}px; opacity: {defaultLabelOpacity};"  in:slide|key={key}>
 						{#key lookup[sort_selected].left_label}
@@ -244,6 +245,7 @@
 					</div>
 					{/each}
 				</div>
+				{/if}
 
 			<!----------------------
 			CANVAS
