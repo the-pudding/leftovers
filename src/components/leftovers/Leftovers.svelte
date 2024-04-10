@@ -280,6 +280,7 @@
 			<div class="headlineContainer" style="opacity: {hedOpacity}; {hedOpacity === 0 ? 'display: none;' : ''}">
 				<h1>{copy.Hed}</h1>
 				<div class="byline">by <a href="https://pudding.cool/author/alvin-chang/">Alvin Chang</a></div>
+
 			</div>
 
 		</div>
@@ -294,10 +295,14 @@
 
 		</Scrolly>
 
-		
+		{#if hedOpacity != 0}
+		<div class="videoTeaser" style="opacity: {hedOpacity}; {hedOpacity === 0 ? 'display: none;' : ''}" transition:fade>
+			Don't feel like scrolling? <a href="https://www.youtube.com/watch?v=fKv1Mixv0Hk">Watch the video instead!</a>
+		</div>
+		{/if}
+
 		<Modal people={people} lookup={lookup} clickedPerson={clickedPerson} currentYear={currentYear}>
 		</Modal>
-		
 		
 	</section>
 	
@@ -305,7 +310,21 @@
 
 <style>
 
-	
+	.videoTeaser {
+		position: fixed;
+		color: white;
+		bottom: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align: center;
+		background: #000;
+		padding: 20px;
+		max-width: 420px;
+		width: 90%;
+	}
+	.videoTeaser a {
+		color: #b58ab1;
+	}
 	.headlineContainer {
 		width: 90%;
 		max-width: 800px;
