@@ -41,7 +41,7 @@ relative_die,20,Relatives died (thus far),,0,2,0,2,3,-1,1,,"[""blackpurple"",""o
 divorce,21,Parent divorces (thus far),,0,2,0,2,3,-1,1,,"[""blackpurple"",""orange"",""pink""]","[0,1,""2+""]",Did not experience parental divorce,Experienced parental divorce,
 bullying,22,Have you been bullied?,,0,1,0,1,2,-1,1,1,"[""blackpurple"",""red""]","[""Not bullied"",""Bullied""]",Less bullied,More bullied,
 see_shot_with_gun,23,See someone shot with gun,,0,5,0,1,2,-1,1,1,"[""blackpurple"",""red""]","[""No"",""Yes""]",Not seen someone shot,Seen someone shot,
-neglect_parent,24,Parenting style,,0,2,0,2,3,-1,1,1,"[""blackpurple"",""red"",""pink""]","[""Parents involved"",""One parent uninvolved"",""Two parents uninvolved""]",Parents involved,Parents not involved,
+neglect_parent,24,Parenting style,,0,2,0,2,3,-1,1,1,"[""blackpurple"",""red"",""pink""]","[""Parents involved"",""One parent uninvolved"",""Two parents uninvolved""]",Parents not involved,Parents involved,
 home_risk,25,Home/family risk score,,0,5,0,4,5,1,1,,"[""blackpurple"",""lightpurple"",""orange"",""red"",""pink""]","[0,1,2,3,""4+""]",Less risk,More risk,
 poverty,26,Childhood poverty,1,0,1,0,1,2,1,1,,"[""blackpurple"",""pink""]","[""No"",""Yes""]",Didn't grow up in poverty,Grew up in poverty,
 peace,27,Peaceful or calm in past month,1,1,4,1,4,4,1,1,1,"[""blackpurple"",""lightpurple"",""red"",""pink""]","[""All of the time"",""Most of the time"",""Some of the time"",""None of the time""]",Less happy,More happy,
